@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "711009442785",
+    "firebase_url": "https://todo-app-suhrob.firebaseio.com",
+    "project_id": "todo-app-suhrob",
+    "storage_bucket": "todo-app-suhrob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711009442785:android:94e4b871fc3886523f10a0",
+        "android_client_info": {
+          "package_name": "uz.suhrob.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711009442785-5kdu0au1po0umresenknu3a7lr3c3hae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2k_sbSx19IL8iMhlRJRLY_vm8kCN73wg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711009442785-5kdu0au1po0umresenknu3a7lr3c3hae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
