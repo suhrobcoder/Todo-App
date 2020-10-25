@@ -2,6 +2,7 @@ package uz.suhrob.todoapp.util
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 
 fun Activity.startNewActivity(activity: Class<*>) {
     startActivity(Intent(applicationContext, activity))
@@ -15,3 +16,6 @@ fun Activity.setStatusBarColor(color: Int) {
         }
     }
 }
+
+fun String.parseColor(): Int =
+    Color.parseColor(this)

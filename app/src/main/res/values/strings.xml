@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Todo App</string>
+    <string name="get_started">Get Started</string>
+    <string name="log_in">Log In</string>
 </resources>

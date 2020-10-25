@@ -32,12 +32,7 @@ class SplashActivity : AppCompatActivity() {
         setStatusBarColor(Color.WHITE)
         todoPreferences.isFirstRun.asLiveData().observe(this) { isFirstRun ->
             when {
-                isFirstRun -> {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        todoPreferences.saveFirstRun(false)
-                    }
-                    startNewActivity(OnboardingActivity::class.java)
-                }
+                isFirstRun -> startNewActivity(OnboardingActivity::class.java)
                 firebaseAuth.currentUser == null -> startNewActivity(LoginActivity::class.java)
                 else -> startNewActivity(HomeActivity::class.java)
             }
