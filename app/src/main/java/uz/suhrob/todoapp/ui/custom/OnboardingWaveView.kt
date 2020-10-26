@@ -64,7 +64,6 @@ class OnboardingWaveView @JvmOverloads constructor(
         } else {
             (paddingTop + paddingBottom).toFloat()
         }
-        Log.d("AppDebug", "$mWidth:$mHeight")
         setMeasuredDimension(mWidth.toInt(), mHeight.toInt())
         setDrawData()
     }

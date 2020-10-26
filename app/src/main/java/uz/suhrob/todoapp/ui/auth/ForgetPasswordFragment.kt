@@ -1,0 +1,55 @@
+package uz.suhrob.todoapp.ui.auth
+
+import android.os.Bundle
+import android.util.Patterns
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import uz.suhrob.todoapp.data.Resource
+import uz.suhrob.todoapp.databinding.FragmentForgetPasswordBinding
+import uz.suhrob.todoapp.ui.base.BaseFragment
+import uz.suhrob.todoapp.ui.home.HomeActivity
+import uz.suhrob.todoapp.util.*
+
+class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
+    private val viewModel: AuthViewModel by activityViewModels()
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentForgetPasswordBinding =
+        FragmentForgetPasswordBinding.inflate(inflater, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.signinToolbar.title = ""
+        setToolbar(binding.signinToolbar)
+        displayBackButton()
+        binding.signinToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.forgotBtn.setOnClickListener {
+            val email = binding.forgotEmail.text.toString()
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.forgotEmail.error = "Enter a valid email"
+                return@setOnClickListener
+            }
+            viewModel.sendPasswordResetRequest(email).observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Loading -> binding.forgotBtn.setLoading(true)
+                    is Resource.Error -> {
+                        binding.forgotBtn.setLoading(false)
+                        toast(it.error)
+                    }
+                    is Resource.Success -> {
+                        toast("Password reset instructions are sent")
+                        startNewActivity(HomeActivity::class.java)
+                    }
+                }
+            }
+        }
+    }
+}

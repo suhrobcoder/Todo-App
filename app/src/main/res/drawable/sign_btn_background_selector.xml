@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/sign_btn_background" android:state_pressed="false" />
+    <item android:state_pressed="true">
+        <ripple android:color="@android:color/darker_gray">
+            <item android:id="@android:id/mask" android:drawable="@drawable/sign_btn_background" />
+        </ripple>
+    </item>
+</selector>

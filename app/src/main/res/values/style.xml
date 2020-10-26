@@ -6,7 +6,10 @@
         <item name="colorAccent">@color/colorSecondary</item>
     </style>
 
-    <style name="SplashTheme" parent="BaseAppTheme">
+    <style name="LightTheme" parent="BaseAppTheme">
+    </style>
+
+    <style name="SplashTheme" parent="LightTheme">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 </resources>

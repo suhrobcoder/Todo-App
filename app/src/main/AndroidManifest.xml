@@ -11,8 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.onboarding.OnboardingActivity" />
+        <activity android:name=".ui.auth.AuthActivity"
+            android:theme="@style/LightTheme"/>
+        <activity android:name=".ui.onboarding.OnboardingActivity"
+            android:theme="@style/LightTheme"/>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/SplashTheme">

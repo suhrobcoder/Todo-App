@@ -1,5 +1,6 @@
 package uz.suhrob.todoapp.ui.onboarding
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.pref.TodoPreferences
 import uz.suhrob.todoapp.databinding.ActivityOnboardingBinding
-import uz.suhrob.todoapp.ui.login.LoginActivity
+import uz.suhrob.todoapp.ui.auth.AuthActivity
+import uz.suhrob.todoapp.util.setStatusBarColor
 import uz.suhrob.todoapp.util.startNewActivity
 import javax.inject.Inject
 
@@ -28,6 +30,7 @@ class OnboardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setStatusBarColor(Color.WHITE)
         binding.getStartedBtn.apply {
             background =
                 ContextCompat.getDrawable(context, R.drawable.get_started_btn_background_selector)
@@ -56,7 +59,7 @@ class OnboardingActivity : AppCompatActivity() {
             binding.onboardingViewpager.currentItem++
         }
         binding.loginBtn.setOnClickListener {
-            startNewActivity(LoginActivity::class.java)
+            startNewActivity(AuthActivity::class.java)
         }
         CoroutineScope(Dispatchers.Main).launch {
             todoPreferences.saveFirstRun(false)

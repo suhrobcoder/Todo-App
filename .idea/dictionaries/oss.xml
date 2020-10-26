@@ -2,7 +2,12 @@
   <dictionary name="oss">
     <words>
       <w>avenir</w>
+      <w>firestore</w>
       <w>onboarding</w>
+      <w>signin</w>
+      <w>signup</w>
+      <w>suhrob</w>
+      <w>todoapp</w>
     </words>
   </dictionary>
 </component>

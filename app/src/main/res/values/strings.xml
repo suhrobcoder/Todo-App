@@ -2,4 +2,17 @@
     <string name="app_name">Todo App</string>
     <string name="get_started">Get Started</string>
     <string name="log_in">Log In</string>
+    <string name="empty_text" />
+    <string name="welcome_back">Welcome back</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_up_to_continue">Sign up to continue</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_reset_content">Please enter your email below to receive your password reset instructions</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
 </resources>
