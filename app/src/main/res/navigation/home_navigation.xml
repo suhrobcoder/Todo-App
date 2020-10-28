@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/home_navigation"
+    app:startDestination="@id/myTasksFragment">
+
+    <fragment
+        android:id="@+id/addCheckListFragment"
+        android:name="uz.suhrob.todoapp.ui.home.AddCheckListFragment"
+        android:label="AddCheckListFragment" />
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="uz.suhrob.todoapp.ui.home.AddNoteFragment"
+        android:label="AddNoteFragment" />
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="uz.suhrob.todoapp.ui.home.AddTaskFragment"
+        android:label="AddTaskFragment" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="uz.suhrob.todoapp.ui.home.MenuFragment"
+        android:label="MenuFragment" />
+    <fragment
+        android:id="@+id/myTasksFragment"
+        android:name="uz.suhrob.todoapp.ui.home.MyTasksFragment"
+        android:label="MyTasksFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="uz.suhrob.todoapp.ui.home.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/quickNotesFragment"
+        android:name="uz.suhrob.todoapp.ui.home.QuickNotesFragment"
+        android:label="QuickNotesFragment" />
+</navigation>

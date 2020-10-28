@@ -3,11 +3,13 @@
     <words>
       <w>avenir</w>
       <w>firestore</w>
+      <w>navigationview</w>
       <w>onboarding</w>
       <w>signin</w>
       <w>signup</w>
       <w>suhrob</w>
       <w>todoapp</w>
+      <w>todos</w>
     </words>
   </dictionary>
 </component>

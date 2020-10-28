@@ -15,4 +15,8 @@
     <string name="password_reset_content">Please enter your email below to receive your password reset instructions</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
+    <string name="my_task">My Task</string>
+    <string name="menu">Menu</string>
+    <string name="quick">Quick</string>
+    <string name="profile">Profile</string>
 </resources>
