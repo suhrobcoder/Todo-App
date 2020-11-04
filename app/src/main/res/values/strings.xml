@@ -19,4 +19,12 @@
     <string name="menu">Menu</string>
     <string name="quick">Quick</string>
     <string name="profile">Profile</string>
+    <string name="add_task">Add Task</string>
+    <string name="add_check_list">Add Check List</string>
+    <string name="add_quick_note">Add Quick Note</string>
+    <string name="work_list">Work List</string>
+    <string name="filter">Filter</string>
+    <string name="incomplete_tasks">Incomplete Tasks</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="all_tasks">All Tasks</string>
 </resources>

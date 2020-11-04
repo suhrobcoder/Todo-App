@@ -88,6 +88,8 @@ dependencies {
     implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha02'
 
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'com.google.truth:truth:1.0.1'

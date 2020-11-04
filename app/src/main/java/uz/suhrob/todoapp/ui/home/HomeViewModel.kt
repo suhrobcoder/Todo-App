@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import uz.suhrob.todoapp.data.database.entity.CheckListWithItems
-import uz.suhrob.todoapp.data.database.entity.Note
-import uz.suhrob.todoapp.data.database.entity.Tag
-import uz.suhrob.todoapp.data.database.entity.Todo
+import uz.suhrob.todoapp.data.database.entity.*
 import uz.suhrob.todoapp.data.repository.checklist.CheckListRepository
 import uz.suhrob.todoapp.data.repository.note.NoteRepository
 import uz.suhrob.todoapp.data.repository.tag.TagRepository
@@ -29,8 +26,20 @@ class HomeViewModel @ViewModelInject constructor(
         tagRepository.insertTag(tag)
     }
 
+    fun updateTag(tag: Tag) = viewModelScope.launch {
+        tagRepository.insertTag(tag)
+    }
+
     fun newTodo(todo: Todo) = viewModelScope.launch {
         todoRepository.insertTodo(todo)
+    }
+
+    fun updateTodo(todo: Todo) = viewModelScope.launch {
+        todoRepository.updateTodo(todo)
+    }
+
+    fun deleteTodo(todo: Todo) = viewModelScope.launch {
+        todoRepository.deleteTodo(todo)
     }
 
     fun newNote(note: Note) = viewModelScope.launch {
@@ -39,5 +48,9 @@ class HomeViewModel @ViewModelInject constructor(
 
     fun newCheckList(checkListWithItems: CheckListWithItems) = viewModelScope.launch {
         checkListRepository.insertCheckList(checkListWithItems)
+    }
+
+    fun updateCheckListItem(item: CheckListItem) = viewModelScope.launch {
+        checkListRepository.updateCheckListItem(item)
     }
 }

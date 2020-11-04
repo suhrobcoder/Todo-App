@@ -12,4 +12,13 @@
     <style name="SplashTheme" parent="LightTheme">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
+
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/avenir_medium</item>
+    </style>
+
+    <style name="ToolbarTitleStyle" parent="TextAppearance.AppCompat.Large.Inverse">
+        <item name="fontFamily">@font/avenir_demi</item>
+    </style>
 </resources>

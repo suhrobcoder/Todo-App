@@ -2,6 +2,8 @@
   <dictionary name="oss">
     <words>
       <w>avenir</w>
+      <w>bottomnav</w>
+      <w>demi</w>
       <w>firestore</w>
       <w>navigationview</w>
       <w>onboarding</w>

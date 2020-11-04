@@ -8,4 +8,6 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
+    <color name="bottomnav_background">#363E62</color>
+    <color name="todo_item_background">#FCFCFC</color>
 </resources>

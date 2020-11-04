@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    app:dragEdge="right"
+    app:mode="same_level">
+
+    <LinearLayout
+        android:id="@+id/right_swipe_layout"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:background="@color/todo_item_background"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <ImageButton
+                    android:id="@+id/todo_item_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/ic_edit"
+                    tools:ignore="ContentDescription" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageButton
+                    android:id="@+id/todo_item_delete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/ic_delete"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/todo_item_background">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/todo_item_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:gravity="center_vertical"
+                    android:button="@drawable/checkbox_selector"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/todo_item_end_view"
+                    android:layout_toEndOf="@id/todo_item_check"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/todo_item_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/avenir_medium"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="22sp"
+                        tools:text="Go fishing with Stephen" />
+
+                    <TextView
+                        android:id="@+id/todo_item_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir_medium"
+                        android:textSize="22sp"
+                        tools:text="9.00 am" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/todo_item_end_view"
+                    android:layout_width="6dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/colorSecondary" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<B: ViewBinding>: Fragment() {
-    protected lateinit var binding: B
+    private var _binding: B? = null
+    protected val binding: B get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = getViewBinding(inflater, container)
+        if (_binding == null) {
+            _binding = getViewBinding(inflater, container)
+        }
         return binding.root
     }
 

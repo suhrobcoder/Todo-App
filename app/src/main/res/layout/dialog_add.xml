@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/add_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:fontFamily="@font/avenir_bold"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_task"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/add_quick_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:fontFamily="@font/avenir_bold"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_quick_note"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/add_check_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:fontFamily="@font/avenir_bold"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_check_list"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+</LinearLayout>

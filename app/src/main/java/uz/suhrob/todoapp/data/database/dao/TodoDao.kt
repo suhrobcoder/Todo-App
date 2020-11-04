@@ -16,6 +16,6 @@ interface TodoDao {
     @Delete
     suspend fun deleteTodo(todo: Todo)
 
-    @Query("SELECT * FROM todo")
+    @Query("SELECT * FROM todo ORDER  BY due_date ASC")
     fun getAllTodos(): Flow<List<Todo>>
 }

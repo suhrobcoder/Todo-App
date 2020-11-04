@@ -4,13 +4,41 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:id="@+id/my_task_appbar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/my_task_toolbar">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/work_list"
+                android:gravity="center"
+                style="@style/ToolbarTitleStyle"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="48dp"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <uz.suhrob.todoapp.ui.custom.CustomCalendarView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Task"
+        android:id="@+id/calendar_view"
+        app:layout_constraintTop_toBottomOf="@id/my_task_appbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todo_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/calendar_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

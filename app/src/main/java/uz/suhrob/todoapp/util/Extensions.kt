@@ -7,9 +7,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun Activity.startNewActivity(activity: Class<*>) {
     startActivity(Intent(applicationContext, activity))
@@ -45,8 +45,45 @@ fun Fragment.setToolbar(toolbar: Toolbar) {
 }
 
 fun Fragment.toast(text: String) {
-    Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT)
+    Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
 }
 
 fun String.parseColor(): Int =
     Color.parseColor(this)
+
+fun Long.toFormattedDate(): String {
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this
+    val calendarNow = Calendar.getInstance()
+    val format = SimpleDateFormat("MMM DD/yyyy", Locale.US)
+    val date = format.format(calendar.time)
+    return when {
+        calendarNow.daysBetweenDates(calendar) == 0 -> "Today, "
+        calendarNow.daysBetweenDates(calendar) == 1 -> "Yesterday, "
+        calendarNow.daysBetweenDates(calendar) == -1 -> "Tomorrow, "
+        else -> ""
+    } + " $date"
+}
+
+fun Long.toFormattedTime(): String {
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this
+    return SimpleDateFormat("HH:mm", Locale.getDefault()).format(calendar.time)
+}
+
+fun Long.toCalendar(): Calendar = Calendar.getInstance().apply { timeInMillis = this@toCalendar }
+
+fun Calendar.daysBetweenDates(other: Calendar): Int {
+    val day1 = this.timeInMillis / 86400
+    val day2 = other.timeInMillis / 86400
+    return (day1 - day2).toInt()
+}
+
+fun Calendar.getCalendarDay() =
+    CalendarDay.from(get(Calendar.YEAR), get(Calendar.MONTH)+1, get(Calendar.DAY_OF_MONTH))
+
+operator fun CalendarDay.compareTo(other: CalendarDay): Int {
+    val x1 = year * 366 + month * 12 + day
+    val x2 = other.year * 366 + other.month * 12 + other.day
+    return x1 - x2
+}
