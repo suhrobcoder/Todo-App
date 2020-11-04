@@ -3,6 +3,7 @@ package uz.suhrob.todoapp.data.repository.tag
 import kotlinx.coroutines.flow.Flow
 import uz.suhrob.todoapp.data.database.dao.TagDao
 import uz.suhrob.todoapp.data.database.entity.Tag
+import uz.suhrob.todoapp.data.database.entity.TagWithTasksCount
 
 class TagRepositoryImpl(
     private val tagDao: TagDao
@@ -13,5 +14,5 @@ class TagRepositoryImpl(
 
     override suspend fun deleteTag(tag: Tag) = tagDao.deleteTag(tag)
 
-    override fun getAllTags(): Flow<List<Tag>> = tagDao.getAllTags()
+    override fun getAllTags(): Flow<List<TagWithTasksCount>> = tagDao.getAllTags()
 }

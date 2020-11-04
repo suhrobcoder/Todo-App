@@ -10,4 +10,9 @@
     <color name="gray_600">#FF757575</color>
     <color name="bottomnav_background">#363E62</color>
     <color name="todo_item_background">#FCFCFC</color>
+    <color name="color_picker1">#8469FF</color>
+    <color name="color_picker2">#FB007B</color>
+    <color name="color_picker3">#3DD264</color>
+    <color name="color_picker4">#554476</color>
+    <color name="color_picker5">#F7D799</color>
 </resources>

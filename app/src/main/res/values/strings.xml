@@ -27,4 +27,8 @@
     <string name="incomplete_tasks">Incomplete Tasks</string>
     <string name="completed_tasks">Completed Tasks</string>
     <string name="all_tasks">All Tasks</string>
+    <string name="projects">Projects</string>
+    <string name="title">Title</string>
+    <string name="choose_color">Choose color</string>
+    <string name="add_tag">Add Tag</string>
 </resources>

@@ -3,6 +3,7 @@ package uz.suhrob.todoapp.data.database.dao
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import uz.suhrob.todoapp.data.database.entity.Tag
+import uz.suhrob.todoapp.data.database.entity.TagWithTasksCount
 
 @Dao
 interface TagDao {
@@ -15,6 +16,6 @@ interface TagDao {
     @Delete
     suspend fun deleteTag(tag: Tag)
 
-    @Query("SELECT * FROM tag")
-    fun getAllTags(): Flow<List<Tag>>
+    @Query("SELECT COUNT(todo.tag_id) as tasksCount, tag.id, tag.title, tag.color FROM tag LEFT JOIN todo ON tag.id == todo.tag_id GROUP BY tag.id")
+    fun getAllTags(): Flow<List<TagWithTasksCount>>
 }
