@@ -10,8 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R
-import uz.suhrob.todoapp.data.database.entity.Tag
-import uz.suhrob.todoapp.data.database.entity.Todo
+import uz.suhrob.todoapp.data.database.entity.*
 import uz.suhrob.todoapp.databinding.ActivityHomeBinding
 
 @AndroidEntryPoint
@@ -49,5 +48,18 @@ class HomeActivity : AppCompatActivity() {
             ).show(supportFragmentManager, "AddDialogFragment")
         }
         binding.homeBottomNavigationview.setupWithNavController(navController)
+
+        for (i in 1..5) {
+            viewModel.newNote(Note("description $i", Color.RED))
+            viewModel.newCheckList(CheckListWithItems(
+                checkList = CheckList("title $i", Color.GREEN),
+                checkListItems = listOf(
+                    CheckListItem("title 1", i, true),
+                    CheckListItem("title 2", i, false),
+                    CheckListItem("title 3", i, true),
+                    CheckListItem("title 4", i, false)
+                )
+            ))
+        }
     }
 }

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class CheckListItem(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "check_list_id") var checkListId: Int,
-    @ColumnInfo(name = "checked") val checked: Boolean
+    @ColumnInfo(name = "checked") var checked: Boolean
 ) {
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int = 0
 }

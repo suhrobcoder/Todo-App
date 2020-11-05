@@ -131,7 +131,6 @@ class TodoListAdapter @Inject constructor() : BaseTwoItemTypeRecyclerAdapter<Tod
                 binding.todoItemCheck.setOnCheckedChangeListener { _, isChecked ->
                     editListener?.invoke(todo.apply { isDone = isChecked })
                     notifyItemChanged(adapterPosition)
-                    Log.d("AppDebug", isChecked.toString())
                 }
                 if (todo.isDone) {
                     binding.todoItemTitle.paintFlags = binding.todoItemTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
