@@ -33,6 +33,10 @@ class TodoPreferences(
         get() = dataStore.data.map { prefs ->
             prefs[KEY_USER_EMAIL]
         }
+    val userProfilePicture: Flow<String?>
+        get() = dataStore.data.map { prefs ->
+            prefs[KEY_PROFILE_PICTURE]
+        }
 
     suspend fun saveFirstRun(firstRun: Boolean) {
         dataStore.edit { prefs->
@@ -45,6 +49,7 @@ class TodoPreferences(
             prefs[KEY_USER_ID] = user.uid
             prefs[KEY_USER_NAME] = user.name
             prefs[KEY_USER_EMAIL] = user.email
+            prefs[KEY_PROFILE_PICTURE] = user.profilePicture
         }
     }
 
@@ -53,6 +58,6 @@ class TodoPreferences(
         private val KEY_USER_ID = preferencesKey<String>("user_id")
         private val KEY_USER_NAME = preferencesKey<String>("user_name")
         private val KEY_USER_EMAIL = preferencesKey<String>("user_email")
+        private val KEY_PROFILE_PICTURE = preferencesKey<String>("profile_picture")
     }
-
 }

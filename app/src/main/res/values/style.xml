@@ -21,4 +21,11 @@
     <style name="ToolbarTitleStyle" parent="TextAppearance.AppCompat.Large.Inverse">
         <item name="fontFamily">@font/avenir_demi</item>
     </style>
+
+
+
+    <style name="ProfileImageStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>

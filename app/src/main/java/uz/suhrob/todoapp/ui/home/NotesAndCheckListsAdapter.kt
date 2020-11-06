@@ -4,7 +4,6 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
@@ -56,9 +55,21 @@ class NotesAndCheckListsAdapter @Inject constructor() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == FIRST_ITEM_TYPE) {
-            NoteViewHolder(NoteItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            NoteViewHolder(
+                NoteItemLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
         } else {
-            CheckListViewHolder(CheckListItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            CheckListViewHolder(
+                CheckListItemLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
         }
     }
 
@@ -79,9 +90,19 @@ class NotesAndCheckListsAdapter @Inject constructor() :
         }
     }
 
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        if (holder is CheckListViewHolder) {
+            for (checkBox in holder.checkListItems) {
+                checkBox.setOnClickListener(null)
+            }
+        }
+        super.onViewRecycled(holder)
+    }
+
     inner class CheckListViewHolder(private val binding: CheckListItemLayoutBinding) :
         BaseViewHolder<CheckList>(binding) {
         private var checkListItemsAdded = false
+        val checkListItems = arrayListOf<CheckBox>()
 
         override fun bind(item: CheckList?) {
             item?.let { checkList ->
@@ -93,7 +114,10 @@ class NotesAndCheckListsAdapter @Inject constructor() :
                 for (checkListItem in checkList.items) {
                     val checkBox = CheckBox(binding.root.context).apply {
                         text = checkListItem.title
-                        typeface = Typeface.create(ResourcesCompat.getFont(context, R.font.avenir_medium), Typeface.NORMAL)
+                        typeface = Typeface.create(
+                            ResourcesCompat.getFont(context, R.font.avenir_medium),
+                            Typeface.NORMAL
+                        )
                         textSize = 24F
                         isChecked = checkListItem.checked
                         setButtonDrawable(R.drawable.checklist_item_selector)
@@ -102,6 +126,7 @@ class NotesAndCheckListsAdapter @Inject constructor() :
                             notifyItemChanged(adapterPosition)
                         }
                     }
+                    checkListItems.add(checkBox)
                     binding.checkListRoot.addView(checkBox)
                 }
                 checkListItemsAdded = true

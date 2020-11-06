@@ -18,18 +18,23 @@
     <string name="my_task">My Task</string>
     <string name="menu">Menu</string>
     <string name="quick">Quick</string>
-    <string name="profile">Profile</string>
     <string name="add_task">Add Task</string>
     <string name="add_check_list">Add Check List</string>
     <string name="add_quick_note">Add Quick Note</string>
     <string name="work_list">Work List</string>
     <string name="filter">Filter</string>
     <string name="incomplete_tasks">Incomplete Tasks</string>
-    <string name="completed_tasks">Completed Tasks</string>
     <string name="all_tasks">All Tasks</string>
     <string name="projects">Projects</string>
     <string name="title">Title</string>
     <string name="choose_color">Choose color</string>
     <string name="add_tag">Add Tag</string>
     <string name="quick_notes">Quick Notes</string>
+    <string name="create_tasks">Create Tasks</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="profile">Profile</string>
+    <string name="change_image_from_camera">from camera</string>
+    <string name="change_image_from_storage">from storage</string>
+    <string name="remove_image">Remove image</string>
+    <string name="sign_out">Sign out</string>
 </resources>

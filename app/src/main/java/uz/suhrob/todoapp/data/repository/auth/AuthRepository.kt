@@ -19,8 +19,4 @@ interface AuthRepository {
     fun sendPasswordResetRequest(
         email: String
     ): MutableLiveData<Resource<String>>
-
-    suspend fun saveUserToFirestore(user: User)
-
-    suspend fun getUserFromFireStore(email: String): User
 }

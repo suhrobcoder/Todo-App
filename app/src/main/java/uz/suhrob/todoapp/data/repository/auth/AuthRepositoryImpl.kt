@@ -4,19 +4,19 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import uz.suhrob.todoapp.data.FirestoreDataSource
 import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.data.model.User
 import uz.suhrob.todoapp.data.pref.TodoPreferences
 
 class AuthRepositoryImpl(
     private val firebaseAuth: FirebaseAuth,
-    private val todoPreferences: TodoPreferences
+    private val todoPreferences: TodoPreferences,
+    private val firestoreDataSource: FirestoreDataSource
 ) : AuthRepository {
     override fun signInWithEmailAndPassword(
         email: String,
@@ -29,7 +29,7 @@ class AuthRepositoryImpl(
                 if (task.isSuccessful) {
                     task.result?.user?.let {
                         CoroutineScope(Dispatchers.IO).launch {
-                            val user = getUserFromFireStore(email)
+                            val user = firestoreDataSource.getUser(email)
                             withContext(Dispatchers.Main) {
                                 authLiveData.value = Resource.Success(user)
                             }
@@ -61,7 +61,7 @@ class AuthRepositoryImpl(
                         authLiveData.value = Resource.Success(user)
                         CoroutineScope(Dispatchers.IO).launch {
                             todoPreferences.saveUser(user)
-                            saveUserToFirestore(user)
+                            firestoreDataSource.saveUser(user)
                         }
                     }
                 } else {
@@ -87,23 +87,4 @@ class AuthRepositoryImpl(
             }
         return authLiveData
     }
-
-    override suspend fun saveUserToFirestore(user: User) {
-        val usersCollection = FirebaseFirestore.getInstance().collection("users")
-        usersCollection.add(user).await()
-    }
-
-    override suspend fun getUserFromFireStore(email: String): User {
-        val usersCollection = FirebaseFirestore.getInstance().collection("users")
-        val query = usersCollection
-            .whereEqualTo("email", email)
-            .get()
-            .await()
-        if (query.isEmpty) {
-            return User("", "", "")
-        } else {
-            return query.documents[0].toObject(User::class.java)!!
-        }
-    }
-
 }

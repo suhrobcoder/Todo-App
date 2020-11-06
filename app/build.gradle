@@ -81,8 +81,9 @@ dependencies {
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
 
-    implementation 'com.google.firebase:firebase-firestore:21.7.1'
-    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-firestore:22.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
 
     implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha02'
@@ -90,6 +91,8 @@ dependencies {
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'com.google.truth:truth:1.0.1'

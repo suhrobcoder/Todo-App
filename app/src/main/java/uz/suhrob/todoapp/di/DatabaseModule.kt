@@ -10,10 +10,7 @@ import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import uz.suhrob.todoapp.data.database.TodoDatabase
-import uz.suhrob.todoapp.data.database.dao.CheckListWithItemsDao
-import uz.suhrob.todoapp.data.database.dao.NoteDao
-import uz.suhrob.todoapp.data.database.dao.TagDao
-import uz.suhrob.todoapp.data.database.dao.TodoDao
+import uz.suhrob.todoapp.data.database.dao.*
 import javax.inject.Singleton
 
 @Module
@@ -48,4 +45,10 @@ object DatabaseModule {
     fun provideCheckListWithItemsDao(
         database: TodoDatabase
     ): CheckListWithItemsDao = database.getCheckListWithItemsDao()
+
+    @ActivityRetainedScoped
+    @Provides
+    fun provideProfileDao(
+        database: TodoDatabase
+    ): ProfileDao = database.getProfileDao()
 }
