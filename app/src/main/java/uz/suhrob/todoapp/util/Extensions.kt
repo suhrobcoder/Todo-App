@@ -55,7 +55,7 @@ fun Long.toFormattedDate(): String {
     val calendar = Calendar.getInstance()
     calendar.timeInMillis = this
     val calendarNow = Calendar.getInstance()
-    val format = SimpleDateFormat("MMM DD/yyyy", Locale.US)
+    val format = SimpleDateFormat("MMM dd/yyyy", Locale.US)
     val date = format.format(calendar.time)
     return when {
         calendarNow.daysBetweenDates(calendar) == 0 -> "Today, "

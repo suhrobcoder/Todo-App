@@ -18,7 +18,6 @@
     <string name="my_task">My Task</string>
     <string name="menu">Menu</string>
     <string name="quick">Quick</string>
-    <string name="add_task">Add Task</string>
     <string name="add_check_list">Add Check List</string>
     <string name="add_quick_note">Add Quick Note</string>
     <string name="work_list">Work List</string>
@@ -37,4 +36,9 @@
     <string name="change_image_from_storage">from storage</string>
     <string name="remove_image">Remove image</string>
     <string name="sign_out">Sign out</string>
+    <string name="new_task">New Task</string>
+    <string name="description">Description</string>
+    <string name="due_date">Due Date</string>
+    <string name="anytime">Anytime</string>
+    <string name="add_task">Add Task</string>
 </resources>

@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.addTaskFragment, R.id.addNoteFragment, R.id.addCheckListFragment -> {
                     binding.addBtn.hide()
+                    binding.homeBottomNavigationview.selectedItemId = 0
                 }
                 else -> binding.addBtn.show()
             }
