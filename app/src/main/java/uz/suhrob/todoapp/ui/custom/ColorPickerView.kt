@@ -47,8 +47,9 @@ class ColorPickerView @JvmOverloads constructor(
             ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 viewTreeObserver.removeOnGlobalLayoutListener(this)
-                val itemSize = width / 29 * 5
-                val itemMargin = width / 58
+                val mWidth = width - paddingStart - paddingEnd
+                val itemSize = mWidth / 29 * 5
+                val itemMargin = mWidth / 58
                 for (i in pickerList.indices) {
                     val layoutParams = LayoutParams(itemSize, itemSize)
                     layoutParams.setMargins(

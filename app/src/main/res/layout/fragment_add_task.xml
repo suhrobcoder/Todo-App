@@ -88,7 +88,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/description"
                         android:fontFamily="@font/avenir_demi"
-                        android:textSize="18sp"/>
+                        android:textColor="#353535"
+                        android:textSize="20sp"/>
 
                     <EditText
                         android:layout_width="match_parent"
