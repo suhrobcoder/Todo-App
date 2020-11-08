@@ -49,18 +49,5 @@ class HomeActivity : AppCompatActivity() {
             ).show(supportFragmentManager, "AddDialogFragment")
         }
         binding.homeBottomNavigationview.setupWithNavController(navController)
-
-        for (i in 1..5) {
-            viewModel.newNote(Note("description $i", Color.RED))
-            viewModel.newCheckList(CheckListWithItems(
-                checkList = CheckList("title $i", Color.GREEN),
-                checkListItems = listOf(
-                    CheckListItem("title 1", i, true),
-                    CheckListItem("title 2", i, false),
-                    CheckListItem("title 3", i, true),
-                    CheckListItem("title 4", i, false)
-                )
-            ))
-        }
     }
 }

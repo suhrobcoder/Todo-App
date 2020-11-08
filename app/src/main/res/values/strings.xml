@@ -2,7 +2,6 @@
     <string name="app_name">Todo App</string>
     <string name="get_started">Get Started</string>
     <string name="log_in">Log In</string>
-    <string name="empty_text" />
     <string name="welcome_back">Welcome back</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="email">Email</string>
@@ -41,4 +40,7 @@
     <string name="due_date">Due Date</string>
     <string name="anytime">Anytime</string>
     <string name="add_task">Add Task</string>
+    <string name="done">Done</string>
+    <string name="add_new_item">Add new item</string>
+    <string name="item_title">Item Title</string>
 </resources>
