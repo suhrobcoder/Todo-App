@@ -39,13 +39,13 @@ class TodoPreferences(
         }
 
     suspend fun saveFirstRun(firstRun: Boolean) {
-        dataStore.edit { prefs->
+        dataStore.edit { prefs ->
             prefs[KEY_FIRST_RUN] = firstRun
         }
     }
 
     suspend fun saveUser(user: User) {
-        dataStore.edit { prefs->
+        dataStore.edit { prefs ->
             prefs[KEY_USER_ID] = user.uid
             prefs[KEY_USER_NAME] = user.name
             prefs[KEY_USER_EMAIL] = user.email

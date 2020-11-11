@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +9,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.database.entity.Note
 import uz.suhrob.todoapp.databinding.FragmentAddQuickNoteBinding
-import uz.suhrob.todoapp.databinding.FragmentMyTasksBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
+import uz.suhrob.todoapp.ui.home.HomeViewModel
 import uz.suhrob.todoapp.util.displayBackButton
 import uz.suhrob.todoapp.util.onBackPressed
 import uz.suhrob.todoapp.util.setToolbar
 
 @AndroidEntryPoint
-class AddNoteFragment: BaseFragment<FragmentAddQuickNoteBinding>() {
+class AddNoteFragment : BaseFragment<FragmentAddQuickNoteBinding>() {
     private val viewModel: HomeViewModel by activityViewModels()
 
     override fun getViewBinding(

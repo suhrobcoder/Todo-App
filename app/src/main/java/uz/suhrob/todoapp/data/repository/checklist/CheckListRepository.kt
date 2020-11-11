@@ -1,7 +1,6 @@
 package uz.suhrob.todoapp.data.repository.checklist
 
 import kotlinx.coroutines.flow.Flow
-import uz.suhrob.todoapp.data.database.entity.CheckList
 import uz.suhrob.todoapp.data.database.entity.CheckListItem
 import uz.suhrob.todoapp.data.database.entity.CheckListWithItems
 

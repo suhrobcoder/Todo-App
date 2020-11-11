@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/ic_equalizer"
-        app:showAsAction="always"
         android:id="@+id/tasks_filter"
-        android:title="@string/filter">
+        android:icon="@drawable/ic_equalizer"
+        android:title="@string/filter"
+        app:showAsAction="always">
         <menu>
             <item
-                android:title="@string/incomplete_tasks"
                 android:id="@+id/filter_incomplete"
-                android:icon="@drawable/transparent_icon"/>
+                android:icon="@drawable/transparent_icon"
+                android:title="@string/incomplete_tasks" />
             <item
-                android:title="@string/completed_tasks"
                 android:id="@+id/filter_complete"
-                android:icon="@drawable/transparent_icon"/>
+                android:icon="@drawable/transparent_icon"
+                android:title="@string/completed_tasks" />
             <item
-                android:title="@string/all_tasks"
                 android:id="@+id/filter_all"
-                android:icon="@drawable/ic_filter_check"/>
+                android:icon="@drawable/ic_filter_check"
+                android:title="@string/all_tasks" />
         </menu>
     </item>
 </menu>

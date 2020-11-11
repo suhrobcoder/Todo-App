@@ -8,34 +8,34 @@
     tools:context=".ui.home.HomeActivity">
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/home_navigation_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/home_navigation"
-        app:defaultNavHost="true"
         android:layout_marginBottom="?actionBarSize"
-        android:id="@+id/home_navigation_container" />
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/home_navigation" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_app_bar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/bottomnav_background"
         app:fabCradleMargin="0dp"
         app:fabCradleRoundedCornerRadius="0dp"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/bottomnav_background">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/home_bottom_navigationview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/home_bottom_navigation_menu"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:theme="@style/Widget.BottomNavigationView"
             app:itemIconTint="@color/bottomnav_selector"
             app:itemTextColor="@color/bottomnav_selector"
-            android:id="@+id/home_bottom_navigationview"/>
+            app:menu="@menu/home_bottom_navigation_menu" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -44,10 +44,10 @@
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_plus"
         android:backgroundTint="@color/colorPrimary"
-        app:tint="@android:color/white"
+        android:src="@drawable/ic_plus"
         app:borderWidth="0dp"
-        app:layout_anchor="@id/bottom_app_bar"/>
+        app:layout_anchor="@id/bottom_app_bar"
+        app:tint="@android:color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

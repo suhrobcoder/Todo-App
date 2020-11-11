@@ -6,7 +6,7 @@ import uz.suhrob.todoapp.data.database.entity.Todo
 
 class TodoRepositoryImpl(
     private val todoDao: TodoDao
-): TodoRepository {
+) : TodoRepository {
     override suspend fun insertTodo(todo: Todo) = todoDao.insertTodo(todo)
 
     override suspend fun updateTodo(todo: Todo) = todoDao.updateTodo(todo)

@@ -5,30 +5,30 @@
 
     <fragment
         android:id="@+id/addCheckListFragment"
-        android:name="uz.suhrob.todoapp.ui.home.AddCheckListFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.AddCheckListFragment"
         android:label="AddCheckListFragment" />
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="uz.suhrob.todoapp.ui.home.AddNoteFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.AddNoteFragment"
         android:label="AddNoteFragment" />
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="uz.suhrob.todoapp.ui.home.AddTaskFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.AddTaskFragment"
         android:label="AddTaskFragment" />
     <fragment
         android:id="@+id/menuFragment"
-        android:name="uz.suhrob.todoapp.ui.home.MenuFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.MenuFragment"
         android:label="MenuFragment" />
     <fragment
         android:id="@+id/myTasksFragment"
-        android:name="uz.suhrob.todoapp.ui.home.MyTasksFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.MyTasksFragment"
         android:label="MyTasksFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="uz.suhrob.todoapp.ui.home.ProfileFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/quickNotesFragment"
-        android:name="uz.suhrob.todoapp.ui.home.QuickNotesFragment"
+        android:name="uz.suhrob.todoapp.ui.home.screens.QuickNotesFragment"
         android:label="QuickNotesFragment" />
 </navigation>

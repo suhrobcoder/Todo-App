@@ -9,5 +9,7 @@ data class Tag(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "color") val color: Int
 ) {
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int = 0
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int = 0
 }

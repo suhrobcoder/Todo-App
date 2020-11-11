@@ -7,7 +7,7 @@ import uz.suhrob.todoapp.data.database.entity.TagWithTasksCount
 
 class TagRepositoryImpl(
     private val tagDao: TagDao
-): TagRepository {
+) : TagRepository {
     override suspend fun insertTag(tag: Tag) = tagDao.insertTag(tag)
 
     override suspend fun updateTag(tag: Tag) = tagDao.updateTag(tag)

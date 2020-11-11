@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="@string/my_task"
+        android:id="@+id/myTasksFragment"
         android:icon="@drawable/ic_check"
-        android:id="@+id/myTasksFragment" />
+        android:title="@string/my_task" />
     <item
-        android:title="@string/menu"
+        android:id="@+id/menuFragment"
         android:icon="@drawable/ic_menu"
-        android:id="@+id/menuFragment" />
+        android:title="@string/menu" />
+    <item android:title="" />
     <item
-        android:title=""/>
-    <item
-        android:title="@string/quick"
+        android:id="@+id/quickNotesFragment"
         android:icon="@drawable/ic_quick_notes"
-        android:id="@+id/quickNotesFragment" />
+        android:title="@string/quick" />
     <item
-        android:title="@string/profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"
-        android:id="@+id/profileFragment" />
+        android:title="@string/profile" />
 </menu>

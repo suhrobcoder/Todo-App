@@ -11,7 +11,7 @@ class FirestoreDataSource @Inject constructor(
     private val firestore: FirebaseFirestore,
     private val firebaseAuth: FirebaseAuth,
     private val pref: TodoPreferences
-){
+) {
     suspend fun saveUser(user: User) {
         val usersCollection = firestore.collection("users")
         usersCollection.add(user).await()

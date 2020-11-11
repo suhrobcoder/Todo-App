@@ -10,6 +10,9 @@ data class CheckList(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "color") val color: Int
 ) {
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int = 0
-    @Ignore var items: List<CheckListItem> = listOf()
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int = 0
+    @Ignore
+    var items: List<CheckListItem> = listOf()
 }

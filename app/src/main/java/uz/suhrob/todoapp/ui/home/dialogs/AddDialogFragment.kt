@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,7 +13,7 @@ class AddDialogFragment(
     private val addTaskListener: () -> Unit,
     private val addQuickNoteListener: () -> Unit,
     private val addCheckListListener: () -> Unit
-): DialogFragment() {
+) : DialogFragment() {
     private var _binding: DialogAddBinding? = null
     private val binding get() = _binding!!
 

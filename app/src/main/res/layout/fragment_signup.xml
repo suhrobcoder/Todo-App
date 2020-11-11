@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/signup_toolbar"
@@ -42,71 +42,71 @@
                 android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="48dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_name"
-                    tools:text="Suhrob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
                     android:inputType="textEmailAddress"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="Suhrob" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_email"
-                    tools:text="suhrob@gmail.com"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="suhrob@gmail.com" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_password"
-                    tools:text="suhrob@gmail.com"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="suhrob@gmail.com" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_password_confirm"
-                    tools:text="suhrob@gmail.com"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/confirm_password"
                     android:inputType="textPassword"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="suhrob@gmail.com" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,18 +120,18 @@
                 app:progress_text="Sign Up" />
 
             <TextView
+                android:id="@+id/to_signin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/sign_in"
-                android:textColor="@android:color/black"
-                android:fontFamily="@font/avenir_medium"
                 android:layout_marginTop="16dp"
-                android:textSize="24sp"
+                android:background="?selectableItemBackground"
+                android:fontFamily="@font/avenir_medium"
+                android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="?selectableItemBackground"
-                android:id="@+id/to_signin" />
+                android:text="@string/sign_in"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
 
         </LinearLayout>
 

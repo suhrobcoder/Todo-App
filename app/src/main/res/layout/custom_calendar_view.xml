@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="8dp"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/custom_calendar_mode_toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:id="@+id/custom_calendar_mode_toggle"
+        android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
         <TextView
+            android:id="@+id/custom_calendar_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="August"
-            android:textAllCaps="true"
             android:fontFamily="@font/avenir_demi"
+            android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:id="@+id/custom_calendar_month" />
+            tools:text="August" />
 
         <ImageView
+            android:id="@+id/custom_calendar_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_down"
-            android:id="@+id/custom_calendar_arrow"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/custom_calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_calendar" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

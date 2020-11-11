@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,24 +12,24 @@
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/quick_notes_appbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:id="@+id/quick_notes_appbar"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/quick_notes_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/quick_notes_toolbar">
+                android:layout_height="match_parent">
 
                 <TextView
+                    style="@style/ToolbarTitleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/profile"
-                    android:gravity="center"
-                    style="@style/ToolbarTitleStyle"
+                    android:layout_marginStart="56dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginStart="56dp"/>
+                    android:gravity="center"
+                    android:text="@string/profile" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -38,8 +38,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
@@ -48,39 +48,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_margin="24dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <RelativeLayout
                         android:layout_width="64dp"
                         android:layout_height="64dp">
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/profile_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:shapeAppearanceOverlay="@style/ProfileImageStyle"
-                            android:id="@+id/profile_image"
-                            tools:srcCompat="@drawable/profile_placeholder"/>
+                            tools:srcCompat="@drawable/profile_placeholder" />
 
                         <ProgressBar
+                            android:id="@+id/upload_image_progress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:id="@+id/upload_image_progress"
                             android:visibility="gone" />
 
                         <ImageButton
+                            android:id="@+id/upload_refresh"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/ic_refresh"
                             android:adjustViewBounds="true"
-                            android:id="@+id/upload_refresh"
+                            android:src="@drawable/ic_refresh"
                             android:visibility="gone"
                             tools:ignore="ContentDescription" />
 
@@ -94,21 +94,21 @@
                         tools:ignore="RtlSymmetry">
 
                         <TextView
+                            android:id="@+id/user_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:text="Suhrob"
+                            android:fontFamily="@font/avenir_demi"
                             android:textColor="@android:color/black"
                             android:textSize="24sp"
-                            android:fontFamily="@font/avenir_demi"
-                            android:id="@+id/user_name"/>
+                            tools:text="Suhrob" />
 
                         <TextView
+                            android:id="@+id/user_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:text="suhrobcoder@gmail.com"
                             android:fontFamily="@font/avenir_demi"
                             android:textSize="16sp"
-                            android:id="@+id/user_email"/>
+                            tools:text="suhrobcoder@gmail.com" />
 
                     </LinearLayout>
 
@@ -117,10 +117,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:baselineAligned="false"
                     android:orientation="horizontal"
-                    android:weightSum="2"
                     android:paddingTop="24dp"
-                    android:baselineAligned="false">
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -129,20 +129,20 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/create_tasks"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="120"
-                            android:textSize="22sp"
                             android:fontFamily="@font/avenir_demi"
                             android:textColor="@android:color/black"
-                            android:id="@+id/create_tasks"/>
+                            android:textSize="22sp"
+                            tools:text="120" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/avenir_demi"
                             android:text="@string/create_tasks"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/avenir_demi" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -153,20 +153,20 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/completed_tasks"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="80"
-                            android:textSize="22sp"
                             android:fontFamily="@font/avenir_demi"
                             android:textColor="@android:color/black"
-                            android:id="@+id/completed_tasks"/>
+                            android:textSize="22sp"
+                            tools:text="80" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/avenir_demi"
                             android:text="@string/completed_tasks"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/avenir_demi" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 

@@ -9,10 +9,10 @@ data class TwoItemType<F, S>(
     val second: S? = null
 ) {
     fun getItemType(): Int = if (first != null) {
-            FIRST_ITEM_TYPE
-        } else {
-            SECOND_ITEM_TYPE
-        }
+        FIRST_ITEM_TYPE
+    } else {
+        SECOND_ITEM_TYPE
+    }
 
     fun areContentsTheSame(other: TwoItemType<F, S>): Boolean {
         if (getItemType() != other.getItemType()) {

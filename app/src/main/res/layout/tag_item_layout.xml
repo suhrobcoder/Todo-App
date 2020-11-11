@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="12dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,28 +22,28 @@
             android:padding="24dp">
 
             <uz.suhrob.todoapp.ui.custom.CircleIndicatorView
+                android:id="@+id/tag_indicator"
                 android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:id="@+id/tag_indicator"/>
+                android:layout_height="32dp" />
 
             <TextView
+                android:id="@+id/tag_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Personal"
+                android:layout_marginTop="64dp"
+                android:fontFamily="@font/avenir_demi"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:fontFamily="@font/avenir_demi"
-                android:layout_marginTop="64dp"
-                android:id="@+id/tag_title"/>
+                tools:text="Personal" />
 
             <TextView
+                android:id="@+id/tasks_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="10 tasks"
-                android:textSize="22sp"
-                android:fontFamily="@font/avenir_medium"
                 android:layout_marginTop="24dp"
-                android:id="@+id/tasks_count"/>
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="22sp"
+                tools:text="10 tasks" />
 
         </LinearLayout>
 

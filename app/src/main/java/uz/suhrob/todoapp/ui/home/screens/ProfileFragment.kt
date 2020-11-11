@@ -1,5 +1,6 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.screens
 
+import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.ContentValues
 import android.content.Intent
@@ -10,7 +11,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -27,6 +27,8 @@ import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.databinding.FragmentProfileBinding
 import uz.suhrob.todoapp.ui.auth.AuthActivity
 import uz.suhrob.todoapp.ui.base.BaseFragment
+import uz.suhrob.todoapp.ui.home.HomeViewModel
+import uz.suhrob.todoapp.ui.home.dialogs.ImageChangeDialog
 import uz.suhrob.todoapp.util.*
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -40,7 +42,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     @Inject
     lateinit var glide: RequestManager
-    @Inject lateinit var firebaseAuth: FirebaseAuth
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -51,7 +54,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         super.onViewCreated(view, savedInstanceState)
         setToolbar(binding.quickNotesToolbar)
         setHasOptionsMenu(true)
-        binding.quickNotesToolbar.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
+        binding.quickNotesToolbar.overflowIcon =
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
         viewModel.userName.observe(viewLifecycleOwner) {
             binding.userName.text = it
         }
@@ -59,7 +63,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             binding.userEmail.text = it
         }
         viewModel.userProfilePicture.observe(viewLifecycleOwner) {
-            glide.load(it).listener(object: RequestListener<Drawable> {
+            glide.load(it).listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
@@ -117,8 +121,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     } else {
                         requestPermissions(
                             arrayOf(
-                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                android.Manifest.permission.CAMERA
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
                             ), CAMERA_PERMISSION_REQUEST_CODE
                         )
                     }
@@ -128,7 +132,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                         pickFromStorage()
                     } else {
                         requestPermissions(
-                            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                             STORAGE_PERMISSION_REQUEST_CODE
                         )
                     }
@@ -244,7 +248,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun compressImage(imageUri: Uri): ByteArray {
-        val inputStream: InputStream? = (activity as AppCompatActivity).contentResolver.openInputStream(imageUri)
+        val inputStream: InputStream? =
+            (activity as AppCompatActivity).contentResolver.openInputStream(imageUri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
         val out = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)

@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.adapters
 
 import android.graphics.Paint
 import android.graphics.Typeface

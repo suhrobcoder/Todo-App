@@ -1,7 +1,6 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.adapters
 
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
