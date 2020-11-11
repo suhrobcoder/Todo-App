@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import uz.suhrob.todoapp.data.database.entity.CheckListWithItems
 import uz.suhrob.todoapp.databinding.FragmentAddCheckListBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
 import uz.suhrob.todoapp.ui.custom.CheckListItemView
+import uz.suhrob.todoapp.ui.home.HomeViewModel
 import uz.suhrob.todoapp.util.displayBackButton
 import uz.suhrob.todoapp.util.onBackPressed
 import uz.suhrob.todoapp.util.setToolbar

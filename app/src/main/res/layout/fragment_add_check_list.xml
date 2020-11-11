@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/add_checklist_actionbar"
@@ -31,17 +31,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/add_checklist_actionbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_checklist_actionbar">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
             <LinearLayout
@@ -53,84 +53,84 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/title"
                         android:fontFamily="@font/avenir_demi"
+                        android:text="@string/title"
                         android:textColor="#353535"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/check_list_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/outlined_background"
+                        android:fontFamily="@font/avenir_medium"
+                        android:maxLines="1"
+                        android:paddingHorizontal="8dp"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
-                        android:background="@drawable/outlined_background"
-                        android:paddingHorizontal="8dp"
                         android:textSize="20sp"
-                        android:maxLines="1"
-                        android:layout_marginTop="8dp"
-                        android:id="@+id/check_list_title"
-                        tools:text="Title"
-                        android:fontFamily="@font/avenir_medium"/>
+                        tools:text="Title" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/checklist_items"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:id="@+id/checklist_items"
-                    android:animateLayoutChanges="true"/>
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp" />
 
                 <TextView
+                    android:id="@+id/add_new_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_new_item"
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/avenir_demi"
+                    android:text="@string/add_new_item"
                     android:textColor="#353535"
                     android:textSize="20sp"
                     app:drawableStartCompat="@drawable/ic_add"
-                    app:drawableTint="@android:color/black"
-                    android:id="@+id/add_new_item"/>
+                    app:drawableTint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/choose_color"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/avenir_demi"
+                    android:text="@string/choose_color"
                     android:textColor="#353535"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <uz.suhrob.todoapp.ui.custom.ColorPickerView
+                    android:id="@+id/note_color_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/note_color_picker"
-                    android:paddingHorizontal="16dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="16dp" />
 
                 <Button
+                    android:id="@+id/add_checklist_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/avenir_demi"
+                    android:padding="8dp"
                     android:text="@string/done"
                     android:textAllCaps="false"
-                    android:fontFamily="@font/avenir_demi"
-                    android:textSize="20sp"
-                    android:padding="8dp"
-                    android:layout_marginVertical="16dp"
-                    android:id="@+id/add_checklist_btn" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

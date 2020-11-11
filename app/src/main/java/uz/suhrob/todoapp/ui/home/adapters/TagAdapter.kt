@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -18,16 +18,22 @@ class TagAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerView.ViewH
     private val items: List<TagWithTasksCount>
         get() = differ.currentList
     private val diffCallback = object : DiffUtil.ItemCallback<TagWithTasksCount>() {
-        override fun areItemsTheSame(oldItem: TagWithTasksCount, newItem: TagWithTasksCount): Boolean = oldItem.tag.id == newItem.tag.id
+        override fun areItemsTheSame(
+            oldItem: TagWithTasksCount,
+            newItem: TagWithTasksCount
+        ): Boolean = oldItem.tag.id == newItem.tag.id
 
-        override fun areContentsTheSame(oldItem: TagWithTasksCount, newItem: TagWithTasksCount): Boolean = oldItem == newItem
+        override fun areContentsTheSame(
+            oldItem: TagWithTasksCount,
+            newItem: TagWithTasksCount
+        ): Boolean = oldItem == newItem
     }
     private val differ = AsyncListDiffer(this, diffCallback)
     var tagListener: ((Tag) -> Unit)? = null
     var addListener: (() -> Unit)? = null
 
     fun submitList(list: List<TagWithTasksCount>) {
-            differ.submitList(list)
+        differ.submitList(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -63,7 +69,8 @@ class TagAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerView.ViewH
                 if (tag.title != "Empty") {
                     binding.tagIndicator.setColor(tag.color)
                     binding.tagTitle.text = tag.title
-                    binding.tasksCount.text = "${it.tasksCount} ${if (it.tasksCount > 1) "tasks" else "task"}"
+                    binding.tasksCount.text =
+                        "${it.tasksCount} ${if (it.tasksCount > 1) "tasks" else "task"}"
                 } else {
                     binding.root.visibility = View.GONE
                 }

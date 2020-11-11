@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,7 +14,7 @@ import uz.suhrob.todoapp.util.toFormattedDate
 class TodoDialogFragment(
     private val todo: Todo,
     private val completeListener: (Todo) -> Unit
-): DialogFragment() {
+) : DialogFragment() {
     private var _binding: DialogTodoBinding? = null
     private val binding: DialogTodoBinding get() = _binding!!
 
@@ -30,7 +30,10 @@ class TodoDialogFragment(
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -6,7 +6,7 @@ import uz.suhrob.todoapp.data.database.entity.Note
 
 class NoteRepositoryImpl(
     private val noteDao: NoteDao
-): NoteRepository {
+) : NoteRepository {
     override suspend fun insertNote(note: Note) = noteDao.insertNote(note)
 
     override suspend fun updateNote(note: Note) = noteDao.updateNote(note)

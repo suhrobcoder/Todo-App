@@ -7,52 +7,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/dialog_background"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:background="@drawable/dialog_background">
+        android:padding="8dp">
 
         <EditText
+            android:id="@+id/tag_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title"
-            android:textColor="@android:color/black"
-            android:fontFamily="@font/avenir_medium"
-            android:textSize="20sp"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:id="@+id/tag_title"
-            android:maxLines="1"/>
+            android:fontFamily="@font/avenir_medium"
+            android:hint="@string/title"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/avenir_medium"
             android:text="@string/choose_color"
             android:textColor="@android:color/black"
-            android:fontFamily="@font/avenir_medium"
-            android:textSize="20sp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="32dp"/>
+            android:textSize="20sp" />
 
         <uz.suhrob.todoapp.ui.custom.ColorPickerView
+            android:id="@+id/color_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/color_picker"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
+            android:id="@+id/add_tag_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/sign_btn_background"
-            android:text="@string/add_tag"
-            android:id="@+id/add_tag_btn"
-            android:layout_marginTop="32dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/sign_btn_background"
+            android:text="@string/add_tag" />
 
     </LinearLayout>
 

@@ -1,7 +1,5 @@
 package uz.suhrob.todoapp.ui.home
 
-import android.graphics.Bitmap
-import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.combine
@@ -32,7 +30,8 @@ class HomeViewModel @ViewModelInject constructor(
     val allCheckListAndNotes = noteRepository.getAllNotes()
         .combine(checkListRepository.getAllCheckLists()) { notes, checkListWithItems ->
             val list = ArrayList<TwoItemType<Note, CheckList>>()
-            val checkLists = checkListWithItems.map { it.checkList.apply { items = it.checkListItems } }
+            val checkLists =
+                checkListWithItems.map { it.checkList.apply { items = it.checkListItems } }
             val notesSize = notes.size
             val checkListsSize = checkLists.size
             var noteIndex = 0

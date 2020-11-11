@@ -10,5 +10,7 @@ data class CheckListItem(
     @ColumnInfo(name = "check_list_id") var checkListId: Int,
     @ColumnInfo(name = "checked") var checked: Boolean
 ) {
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int = 0
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int = 0
 }

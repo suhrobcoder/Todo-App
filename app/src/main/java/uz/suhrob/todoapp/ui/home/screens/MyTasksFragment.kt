@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.screens
 
 import android.os.Bundle
 import android.view.*
@@ -9,6 +9,9 @@ import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.model.FilterMode
 import uz.suhrob.todoapp.databinding.FragmentMyTasksBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
+import uz.suhrob.todoapp.ui.home.HomeViewModel
+import uz.suhrob.todoapp.ui.home.adapters.TodoListAdapter
+import uz.suhrob.todoapp.ui.home.dialogs.TodoDialogFragment
 import uz.suhrob.todoapp.util.setToolbar
 import javax.inject.Inject
 

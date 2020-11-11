@@ -6,12 +6,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import uz.suhrob.todoapp.data.database.TodoDatabase
 import uz.suhrob.todoapp.data.database.dao.*
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)

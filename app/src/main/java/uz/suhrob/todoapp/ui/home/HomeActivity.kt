@@ -1,6 +1,5 @@
 package uz.suhrob.todoapp.ui.home
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +9,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R
-import uz.suhrob.todoapp.data.database.entity.*
 import uz.suhrob.todoapp.databinding.ActivityHomeBinding
+import uz.suhrob.todoapp.ui.home.dialogs.AddDialogFragment
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {

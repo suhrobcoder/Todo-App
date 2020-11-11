@@ -80,7 +80,7 @@ fun Calendar.daysBetweenDates(other: Calendar): Int {
 }
 
 fun Calendar.getCalendarDay() =
-    CalendarDay.from(get(Calendar.YEAR), get(Calendar.MONTH)+1, get(Calendar.DAY_OF_MONTH))
+    CalendarDay.from(get(Calendar.YEAR), get(Calendar.MONTH) + 1, get(Calendar.DAY_OF_MONTH))
 
 operator fun CalendarDay.compareTo(other: CalendarDay): Int {
     val x1 = year * 366 + month * 12 + day

@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/todo_item_background">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/todo_item_background"
+    android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="4dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
+            android:id="@+id/check_list_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
-            android:id="@+id/check_list_root">
+            android:orientation="vertical">
 
             <View
+                android:id="@+id/check_list_color"
                 android:layout_width="164dp"
                 android:layout_height="4dp"
-                tools:background="@color/colorPrimary"
-                android:id="@+id/check_list_color"/>
+                tools:background="@color/colorPrimary" />
 
             <TextView
+                android:id="@+id/check_list_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                tools:text="Meeting with Jessica in Central Park at 10:30PM"
-                android:textColor="@android:color/black"
                 android:fontFamily="@font/avenir_demi"
                 android:lineSpacingExtra="4dp"
+                android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:id="@+id/check_list_title"/>
+                tools:text="Meeting with Jessica in Central Park at 10:30PM" />
 
         </LinearLayout>
 

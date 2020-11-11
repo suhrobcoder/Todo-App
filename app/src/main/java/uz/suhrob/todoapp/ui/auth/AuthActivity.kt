@@ -1,8 +1,8 @@
 package uz.suhrob.todoapp.ui.auth
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R

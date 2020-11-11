@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
@@ -24,7 +23,8 @@ class OnboardingWaveView @JvmOverloads constructor(
     private val paint2 = Paint()
     private val path1 = Path()
     private val path2 = Path()
-    @ColorInt private var color: Int = Color.BLUE
+    @ColorInt
+    private var color: Int = Color.BLUE
     private val colors = arrayOf("#F96160", "#6074F9", "#8561F9")
 
     init {
@@ -43,7 +43,11 @@ class OnboardingWaveView @JvmOverloads constructor(
         color = if (position == 2) {
             colors[2].parseColor()
         } else {
-            evaluator.evaluate(positionOffset, colors[position].parseColor(), colors[position+1].parseColor())
+            evaluator.evaluate(
+                positionOffset,
+                colors[position].parseColor(),
+                colors[position + 1].parseColor()
+            )
         }
         invalidate()
     }

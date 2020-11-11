@@ -2,7 +2,6 @@ package uz.suhrob.todoapp.data.database.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import uz.suhrob.todoapp.data.database.entity.Tag
 import uz.suhrob.todoapp.data.database.entity.Todo
 
 @Dao

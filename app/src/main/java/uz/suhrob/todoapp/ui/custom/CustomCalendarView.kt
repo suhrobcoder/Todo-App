@@ -21,7 +21,20 @@ class CustomCalendarView @JvmOverloads constructor(
     private val monthText: TextView
     private val calendarView: MaterialCalendarView
     private val arrowView: ImageView
-    private val months = arrayOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+    private val months = arrayOf(
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    )
     private val weekDays = arrayOf("M", "T", "W", "T", "F", "S", "S")
 
     init {
@@ -47,9 +60,9 @@ class CustomCalendarView @JvmOverloads constructor(
         }
         calendarView.apply {
             setOnMonthChangedListener { _, date ->
-                monthText.text = months[date.month-1]
+                monthText.text = months[date.month - 1]
             }
-            monthText.text = months[currentDate.month-1]
+            monthText.text = months[currentDate.month - 1]
             setOnDateChangedListener(null)
             topbarVisible = false
             setWeekDayLabels(weekDays)
@@ -57,12 +70,12 @@ class CustomCalendarView @JvmOverloads constructor(
                 .setCalendarDisplayMode(CalendarMode.WEEKS)
                 .commit()
         }
-        viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
+        viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 viewTreeObserver.removeOnGlobalLayoutListener(this)
                 val mWidth = width
                 calendarView.tileHeight = mWidth / 7 * 5 / 9
-                Log.d("AppDebug", width.toString())
             }
         })
     }

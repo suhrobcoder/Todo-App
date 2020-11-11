@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,7 +12,7 @@ import uz.suhrob.todoapp.databinding.AddTagDialogLayoutBinding
 
 class AddTagDialogFragment(
     private val addListener: ((Tag) -> Unit)
-): DialogFragment() {
+) : DialogFragment() {
     private var _binding: AddTagDialogLayoutBinding? = null
     private val binding: AddTagDialogLayoutBinding get() = _binding!!
 
@@ -28,14 +28,22 @@ class AddTagDialogFragment(
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.addTagBtn.setOnClickListener {
             if (binding.tagTitle.text.isNotEmpty()) {
-                addListener.invoke(Tag(binding.tagTitle.text.toString(), binding.colorPicker.selectedColor))
+                addListener.invoke(
+                    Tag(
+                        binding.tagTitle.text.toString(),
+                        binding.colorPicker.selectedColor
+                    )
+                )
                 dismiss()
             } else {
                 binding.tagTitle.error = "Title mustn't be empty"

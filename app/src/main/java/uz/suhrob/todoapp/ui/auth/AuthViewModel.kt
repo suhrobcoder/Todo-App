@@ -6,7 +6,7 @@ import uz.suhrob.todoapp.data.repository.auth.AuthRepository
 
 class AuthViewModel @ViewModelInject constructor(
     private val authRepository: AuthRepository
-): ViewModel() {
+) : ViewModel() {
     fun signInWithEmailAndPassword(
         email: String,
         password: String

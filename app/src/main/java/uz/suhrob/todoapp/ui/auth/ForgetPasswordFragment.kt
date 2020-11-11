@@ -3,7 +3,6 @@ package uz.suhrob.todoapp.ui.auth
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
@@ -12,7 +11,10 @@ import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.databinding.FragmentForgetPasswordBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
 import uz.suhrob.todoapp.ui.home.HomeActivity
-import uz.suhrob.todoapp.util.*
+import uz.suhrob.todoapp.util.displayBackButton
+import uz.suhrob.todoapp.util.setToolbar
+import uz.suhrob.todoapp.util.startNewActivity
+import uz.suhrob.todoapp.util.toast
 
 class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
     private val viewModel: AuthViewModel by activityViewModels()

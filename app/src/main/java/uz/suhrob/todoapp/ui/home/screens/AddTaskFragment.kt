@@ -1,4 +1,4 @@
-package uz.suhrob.todoapp.ui.home
+package uz.suhrob.todoapp.ui.home.screens
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -16,6 +16,7 @@ import uz.suhrob.todoapp.data.database.entity.Tag
 import uz.suhrob.todoapp.data.database.entity.Todo
 import uz.suhrob.todoapp.databinding.FragmentAddTaskBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
+import uz.suhrob.todoapp.ui.home.HomeViewModel
 import uz.suhrob.todoapp.util.*
 import java.util.*
 
@@ -120,6 +121,7 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
 
     @SuppressLint("SetTextI18n")
     private fun setTimeText() {
-        binding.dueDateButton.text = calendar.timeInMillis.toFormattedDate() + " " + calendar.timeInMillis.toFormattedTime()
+        binding.dueDateButton.text =
+            calendar.timeInMillis.toFormattedDate() + " " + calendar.timeInMillis.toFormattedTime()
     }
 }

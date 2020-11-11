@@ -12,5 +12,7 @@ data class Todo(
     @ColumnInfo(name = "tag_id") val tagId: Int,
     @ColumnInfo(name = "is_done") var isDone: Boolean = false
 ) {
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int = 0
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int = 0
 }
