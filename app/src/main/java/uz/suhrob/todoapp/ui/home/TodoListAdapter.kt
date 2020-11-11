@@ -27,16 +27,20 @@ class TodoListAdapter @Inject constructor() : BaseTwoItemTypeRecyclerAdapter<Tod
     private val allTodos = ArrayList<Todo>()
     var editListener: ((Todo) -> Unit)? = null
     var deleteListener: ((Todo) -> Unit)? = null
+    var todoClickListener: ((Todo) -> Unit)? = null
     private val days = ArrayList<CalendarDay>()
     private val dayMap = HashMap<CalendarDay, Int>()
     private val viewBinderHelper = ViewBinderHelper().apply { setOpenOnlyOne(true) }
     private var primaryColor: Int = 0
     private var secondaryColor: Int = 0
+    private var filterMode = FilterMode.ALL
 
     fun submitList(todoList: List<Todo>, fromOutside: Boolean = true) {
         if (fromOutside) {
             allTodos.clear()
             allTodos.addAll(todoList)
+            filter()
+            return
         }
         val list = ArrayList<TwoItemType<Todo, DateViewType>>()
         var lastDate = 0L
@@ -55,12 +59,13 @@ class TodoListAdapter @Inject constructor() : BaseTwoItemTypeRecyclerAdapter<Tod
         differ.submitList(list)
     }
 
-    fun filter(mode: FilterMode) {
+    fun filter(mode: FilterMode = filterMode) {
         when (mode) {
             FilterMode.ALL -> submitList(allTodos, false)
             FilterMode.INCOMPLETE -> submitList(allTodos.filter { todo -> !todo.isDone }, false)
             FilterMode.COMPLETED -> submitList(allTodos.filter { todo -> todo.isDone }, false)
         }
+        filterMode = mode
     }
 
     fun getDays(): List<CalendarDay> = days
@@ -133,11 +138,18 @@ class TodoListAdapter @Inject constructor() : BaseTwoItemTypeRecyclerAdapter<Tod
                     notifyItemChanged(adapterPosition)
                 }
                 if (todo.isDone) {
-                    binding.todoItemTitle.paintFlags = binding.todoItemTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                    binding.todoItemTime.paintFlags = binding.todoItemTime.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.todoItemTitle.paintFlags =
+                        binding.todoItemTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.todoItemTime.paintFlags =
+                        binding.todoItemTime.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 } else {
-                    binding.todoItemTitle.paintFlags = binding.todoItemTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                    binding.todoItemTime.paintFlags = binding.todoItemTime.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    binding.todoItemTitle.paintFlags =
+                        binding.todoItemTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    binding.todoItemTime.paintFlags =
+                        binding.todoItemTime.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                }
+                binding.mainLayout.setOnClickListener {
+                    todoClickListener?.invoke(todo)
                 }
             }
         }

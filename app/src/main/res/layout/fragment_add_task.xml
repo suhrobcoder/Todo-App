@@ -29,26 +29,27 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.card.MaterialCardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/add_task_actionbar"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:cardElevation="8dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <ScrollView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingVertical="16dp">
+                android:paddingTop="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,19 +64,35 @@
                     android:background="@drawable/chip_background"
                     android:id="@+id/task_tag"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title"
+                    android:fontFamily="@font/avenir_demi"
+                    android:textColor="#353535"
+                    android:textSize="20sp"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/title"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:layout_marginHorizontal="16dp"
                     android:background="@drawable/outlined_background"
                     android:paddingHorizontal="8dp"
                     android:textSize="20sp"
-                    android:layout_marginTop="16dp"
+                    android:maxLines="1"
+                    tools:text="Title"
+                    android:layout_marginTop="8dp"
                     android:id="@+id/task_title"
                     android:fontFamily="@font/avenir_medium"/>
+
+            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -124,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="@string/anytime"
+                        android:text="@string/now"
                         android:textAllCaps="false"
                         android:backgroundTint="@color/colorSecondary"
                         android:id="@+id/due_date_button"/>
@@ -141,12 +158,13 @@
                     android:fontFamily="@font/avenir_demi"
                     android:textSize="20sp"
                     android:padding="8dp"
+                    android:layout_marginBottom="16dp"
                     android:id="@+id/add_task_btn" />
 
             </LinearLayout>
 
-        </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
 
-    </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

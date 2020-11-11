@@ -15,4 +15,6 @@ class TagRepositoryImpl(
     override suspend fun deleteTag(tag: Tag) = tagDao.deleteTag(tag)
 
     override fun getAllTags(): Flow<List<TagWithTasksCount>> = tagDao.getAllTags()
+
+    override suspend fun clearTable() = tagDao.clearTable()
 }

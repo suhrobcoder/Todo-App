@@ -14,4 +14,6 @@ class NoteRepositoryImpl(
     override suspend fun deleteNote(note: Note) = noteDao.deleteNote(note)
 
     override fun getAllNotes(): Flow<List<Note>> = noteDao.getAllNotes()
+
+    override suspend fun clearTable() = noteDao.clearTable()
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
+import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.database.entity.CheckList
 import uz.suhrob.todoapp.data.database.entity.CheckListItem
 import uz.suhrob.todoapp.data.database.entity.CheckListWithItems
@@ -15,6 +16,7 @@ import uz.suhrob.todoapp.ui.custom.CheckListItemView
 import uz.suhrob.todoapp.util.displayBackButton
 import uz.suhrob.todoapp.util.onBackPressed
 import uz.suhrob.todoapp.util.setToolbar
+import uz.suhrob.todoapp.util.toast
 
 @AndroidEntryPoint
 class AddCheckListFragment : BaseFragment<FragmentAddCheckListBinding>() {
@@ -32,6 +34,7 @@ class AddCheckListFragment : BaseFragment<FragmentAddCheckListBinding>() {
         binding.addChecklistToolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+        binding.addChecklistToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.addNewItem.setOnClickListener {
             CheckListItemView(requireContext()).apply {
                 binding.checklistItems.addView(this)
@@ -49,6 +52,10 @@ class AddCheckListFragment : BaseFragment<FragmentAddCheckListBinding>() {
                 val itemView = binding.checklistItems.getChildAt(i) as CheckListItemView
                 val item = itemView.getCheckListItem() ?: return@setOnClickListener
                 checkListItems.add(item)
+            }
+            if (checkListItems.isEmpty()) {
+                toast("Items is empty")
+                return@setOnClickListener
             }
             viewModel.newCheckList(
                 CheckListWithItems(

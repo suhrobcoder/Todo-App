@@ -1,6 +1,8 @@
 package uz.suhrob.todoapp.ui.home
 
+import android.graphics.Paint
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -25,32 +27,8 @@ class NotesAndCheckListsAdapter @Inject constructor() :
         AsyncListDiffer(this, diffCallback)
     var editListener: ((CheckListItem) -> Unit)? = null
 
-    fun submitList(notes: List<Note>, checkLists: List<CheckList>) {
-        val list = ArrayList<TwoItemType<Note, CheckList>>()
-        val notesSize = notes.size
-        val checkListsSize = checkLists.size
-        var noteIndex = 0
-        var checkListIndex = 0
-        while (noteIndex < notesSize && checkListIndex < checkListsSize) {
-            val note = notes[noteIndex]
-            val checkList = checkLists[checkListIndex]
-            if (note.id > checkList.id) {
-                list.add(TwoItemType(checkList.id, second = checkList))
-                checkListIndex++
-            } else {
-                list.add(TwoItemType(note.id, first = note))
-                noteIndex++
-            }
-        }
-        while (noteIndex < notesSize) {
-            val note = notes[noteIndex++]
-            list.add(TwoItemType(note.id, first = note))
-        }
-        while (checkListIndex < checkListsSize) {
-            val checkList = checkLists[checkListIndex++]
-            list.add(TwoItemType(checkList.id, second = checkList))
-        }
-        differ.submitList(list)
+    fun submitList(notesAndCheckLists: List<TwoItemType<Note, CheckList>>) {
+        differ.submitList(notesAndCheckLists)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -111,7 +89,9 @@ class NotesAndCheckListsAdapter @Inject constructor() :
                 if (checkListItemsAdded) {
                     return@let
                 }
+                Log.d("AppDebug", checkList.toString())
                 for (checkListItem in checkList.items) {
+                    Log.d("AppDebug", checkListItem.toString())
                     val checkBox = CheckBox(binding.root.context).apply {
                         text = checkListItem.title
                         typeface = Typeface.create(
@@ -120,10 +100,20 @@ class NotesAndCheckListsAdapter @Inject constructor() :
                         )
                         textSize = 24F
                         isChecked = checkListItem.checked
+                        paintFlags = if (checkListItem.checked) {
+                            paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        } else {
+                            paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                        }
                         setButtonDrawable(R.drawable.checklist_item_selector)
+                        setOnCheckedChangeListener(null)
                         setOnCheckedChangeListener { _, isChecked ->
                             editListener?.invoke(checkListItem.apply { checked = isChecked })
-                            notifyItemChanged(adapterPosition)
+                            paintFlags = if (isChecked) {
+                                paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                            } else {
+                                paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                            }
                         }
                     }
                     checkListItems.add(checkBox)

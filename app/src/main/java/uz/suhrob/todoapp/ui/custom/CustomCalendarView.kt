@@ -21,7 +21,6 @@ class CustomCalendarView @JvmOverloads constructor(
     private val monthText: TextView
     private val calendarView: MaterialCalendarView
     private val arrowView: ImageView
-    var dateSelectedListener: OnDateSelectedListener? = null
     private val months = arrayOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
     private val weekDays = arrayOf("M", "T", "W", "T", "F", "S", "S")
 
@@ -51,7 +50,7 @@ class CustomCalendarView @JvmOverloads constructor(
                 monthText.text = months[date.month-1]
             }
             monthText.text = months[currentDate.month-1]
-            setOnDateChangedListener(dateSelectedListener)
+            setOnDateChangedListener(null)
             topbarVisible = false
             setWeekDayLabels(weekDays)
             state().edit()
@@ -62,7 +61,7 @@ class CustomCalendarView @JvmOverloads constructor(
             override fun onGlobalLayout() {
                 viewTreeObserver.removeOnGlobalLayoutListener(this)
                 val mWidth = width
-                calendarView.tileHeight = mWidth / 7 * 5 / 8
+                calendarView.tileHeight = mWidth / 7 * 5 / 9
                 Log.d("AppDebug", width.toString())
             }
         })
@@ -71,6 +70,10 @@ class CustomCalendarView @JvmOverloads constructor(
     fun setDecorateDays(days: List<CalendarDay>) {
         calendarView.removeDecorators()
         calendarView.addDecorator(DotsDecorator(days))
+    }
+
+    fun setDateSelectedListener(listener: OnDateSelectedListener) {
+        calendarView.setOnDateChangedListener(listener)
     }
 
     inner class DotsDecorator(private val days: List<CalendarDay>) : DayViewDecorator {

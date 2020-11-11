@@ -10,6 +10,6 @@ interface ProfileRepository {
     fun getProfilePicture(): Flow<String?>
     fun getCreatedTasksCount(): Flow<Int>
     fun getCompletedTasks(): Flow<Int>
-    fun uploadPicture(imageUri: Uri): Flow<Resource<String>>
+    fun uploadPicture(arr: ByteArray): Flow<Resource<String>>
     suspend fun removePicture()
 }

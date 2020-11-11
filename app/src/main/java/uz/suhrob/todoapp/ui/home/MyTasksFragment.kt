@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.model.FilterMode
@@ -14,7 +13,7 @@ import uz.suhrob.todoapp.util.setToolbar
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyTasksFragment: BaseFragment<FragmentMyTasksBinding>() {
+class MyTasksFragment : BaseFragment<FragmentMyTasksBinding>() {
     private val viewModel: HomeViewModel by activityViewModels()
     private var menu: Menu? = null
 
@@ -33,21 +32,25 @@ class MyTasksFragment: BaseFragment<FragmentMyTasksBinding>() {
         todoAdapter.apply {
             editListener = { todo -> viewModel.updateTodo(todo) }
             deleteListener = { todo -> viewModel.deleteTodo(todo) }
+            todoClickListener = { todo ->
+                TodoDialogFragment(todo) {
+                    viewModel.updateTodo(it)
+                }.show(childFragmentManager, "TodoDialogFragment")
+            }
         }
         binding.todoRecycler.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = todoAdapter
         }
-        binding.calendarView.dateSelectedListener =
-            OnDateSelectedListener { _, date, selected -> //TODO
-                if (selected) {
-                    binding.todoRecycler.layoutManager?.scrollToPosition(
-                        todoAdapter.getDatePosition(
-                            date
-                        )
+        binding.calendarView.setDateSelectedListener { _, date, selected ->
+            if (selected) {
+                binding.todoRecycler.layoutManager?.scrollToPosition(
+                    todoAdapter.getDatePosition(
+                        date
                     )
-                }
+                )
             }
+        }
         viewModel.allTodos.observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
             binding.calendarView.setDecorateDays(todoAdapter.getDays())

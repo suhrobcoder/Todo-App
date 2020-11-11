@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import uz.suhrob.todoapp.data.database.entity.CheckList
-import uz.suhrob.todoapp.data.database.entity.Note
 import uz.suhrob.todoapp.databinding.FragmentQuickNotesBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
 import uz.suhrob.todoapp.util.setToolbar
@@ -20,8 +18,6 @@ class QuickNotesFragment : BaseFragment<FragmentQuickNotesBinding>() {
 
     @Inject
     lateinit var notesAndCheckListsAdapter: NotesAndCheckListsAdapter
-    private val notes = ArrayList<Note>()
-    private val checkLists = ArrayList<CheckList>()
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -38,22 +34,8 @@ class QuickNotesFragment : BaseFragment<FragmentQuickNotesBinding>() {
         notesAndCheckListsAdapter.editListener = { item ->
             viewModel.updateCheckListItem(item)
         }
-        viewModel.allNotes.observe(viewLifecycleOwner) {
-            notes.apply {
-                clear()
-                addAll(it)
-            }
-            notesAndCheckListsAdapter.submitList(notes, checkLists)
-        }
-        viewModel.allCheckLists.observe(viewLifecycleOwner) {
-            checkLists.apply {
-                clear()
-                addAll(it.map {
-                    it.checkList.items = it.checkListItems
-                    it.checkList
-                })
-            }
-            notesAndCheckListsAdapter.submitList(notes, checkLists)
+        viewModel.allCheckListAndNotes.observe(viewLifecycleOwner) {
+            notesAndCheckListsAdapter.submitList(it)
         }
     }
 }

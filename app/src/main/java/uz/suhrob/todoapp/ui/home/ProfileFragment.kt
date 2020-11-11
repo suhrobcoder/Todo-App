@@ -4,13 +4,22 @@ import android.app.Activity.RESULT_OK
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R
@@ -19,6 +28,8 @@ import uz.suhrob.todoapp.databinding.FragmentProfileBinding
 import uz.suhrob.todoapp.ui.auth.AuthActivity
 import uz.suhrob.todoapp.ui.base.BaseFragment
 import uz.suhrob.todoapp.util.*
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -40,6 +51,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         super.onViewCreated(view, savedInstanceState)
         setToolbar(binding.quickNotesToolbar)
         setHasOptionsMenu(true)
+        binding.quickNotesToolbar.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
         viewModel.userName.observe(viewLifecycleOwner) {
             binding.userName.text = it
         }
@@ -47,7 +59,27 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             binding.userEmail.text = it
         }
         viewModel.userProfilePicture.observe(viewLifecycleOwner) {
-            glide.load(it).into(binding.profileImage)
+            glide.load(it).listener(object: RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean = false
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.uploadImageProgress.visibility = View.GONE
+                    isImageUploading = false
+                    binding.uploadRefresh.visibility = View.GONE
+                    return false
+                }
+            }).into(binding.profileImage)
         }
         viewModel.createdTasksCount.observe(viewLifecycleOwner) {
             binding.createTasks.text = it.toString()
@@ -57,11 +89,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
         viewModel.uploadPictureState.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Success -> {
-                    binding.uploadImageProgress.visibility = View.GONE
-                    isImageUploading = false
-                    binding.uploadRefresh.visibility = View.GONE
-                }
+                is Resource.Success -> Unit
                 is Resource.Error -> {
                     binding.uploadImageProgress.visibility = View.GONE
                     toast(it.error)
@@ -120,7 +148,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         when (item.itemId) {
             R.id.sign_out_menu -> {
                 firebaseAuth.signOut()
-                startNewActivity(AuthActivity::class.java)
+                viewModel.clearAllData().invokeOnCompletion {
+                    startNewActivity(AuthActivity::class.java)
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -200,16 +230,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         if (resultCode == RESULT_OK) {
             when (requestCode) {
                 CAMERA_REQUEST_CODE -> {
-                    binding.profileImage.setImageURI(imageUri)
-                    viewModel.uploadProfilePicture(imageUri!!)
+                    glide.load(imageUri).into(binding.profileImage)
+                    viewModel.uploadProfilePicture(compressImage(imageUri!!))
                 }
                 GALLERY_REQUEST_CODE -> {
                     imageUri = data?.data
-                    binding.profileImage.setImageURI(imageUri)
-                    viewModel.uploadProfilePicture(imageUri!!)
+                    glide.load(imageUri).into(binding.profileImage)
+                    viewModel.uploadProfilePicture(compressImage(imageUri!!))
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun compressImage(imageUri: Uri): ByteArray {
+        val inputStream: InputStream? = (activity as AppCompatActivity).contentResolver.openInputStream(imageUri)
+        val bitmap = BitmapFactory.decodeStream(inputStream)
+        val out = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+        return out.toByteArray()
     }
 }

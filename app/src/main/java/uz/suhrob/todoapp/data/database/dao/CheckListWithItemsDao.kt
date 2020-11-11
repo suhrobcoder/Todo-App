@@ -30,4 +30,10 @@ interface CheckListWithItemsDao {
 
     @Query("SELECT * FROM check_list")
     fun getAllCheckLists(): Flow<List<CheckListWithItems>>
+
+    @Query("DELETE FROM check_list")
+    suspend fun clearCheckListTable()
+
+    @Query("DELETE FROM check_list_item")
+    suspend fun clearCheckListItemTable()
 }

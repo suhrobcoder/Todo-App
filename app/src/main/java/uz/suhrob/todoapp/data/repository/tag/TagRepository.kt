@@ -9,4 +9,5 @@ interface TagRepository {
     suspend fun updateTag(tag: Tag)
     suspend fun deleteTag(tag: Tag)
     fun getAllTags(): Flow<List<TagWithTasksCount>>
+    suspend fun clearTable()
 }

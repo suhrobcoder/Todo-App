@@ -62,7 +62,7 @@ fun Long.toFormattedDate(): String {
         calendarNow.daysBetweenDates(calendar) == 1 -> "Yesterday, "
         calendarNow.daysBetweenDates(calendar) == -1 -> "Tomorrow, "
         else -> ""
-    } + " $date"
+    } + date
 }
 
 fun Long.toFormattedTime(): String {

@@ -68,7 +68,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/todo_item_background">
+        android:background="@color/todo_item_background"
+        android:id="@+id/main_layout">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

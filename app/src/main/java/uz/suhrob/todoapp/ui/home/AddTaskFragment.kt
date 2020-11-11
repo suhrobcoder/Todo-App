@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -73,6 +74,10 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
                 }
         }
         viewModel.allTags.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                viewModel.newTag(Tag("Personal", Color.RED))
+                return@observe
+            }
             tags = it.map { tagWithTasksCount -> tagWithTasksCount.tag }.toTypedArray()
             if (binding.taskTag.text.toString().isEmpty()) {
                 binding.taskTag.text = tags[0].title

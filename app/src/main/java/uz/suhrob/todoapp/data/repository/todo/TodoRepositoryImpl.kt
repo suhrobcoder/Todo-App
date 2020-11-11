@@ -14,4 +14,6 @@ class TodoRepositoryImpl(
     override suspend fun deleteTodo(todo: Todo) = todoDao.deleteTodo(todo)
 
     override fun getAllTodos(): Flow<List<Todo>> = todoDao.getAllTodos()
+
+    override suspend fun clearTable() = todoDao.clearTable()
 }

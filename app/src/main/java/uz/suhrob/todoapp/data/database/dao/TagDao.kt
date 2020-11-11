@@ -18,4 +18,7 @@ interface TagDao {
 
     @Query("SELECT COUNT(todo.tag_id) as tasksCount, tag.id, tag.title, tag.color FROM tag LEFT JOIN todo ON tag.id == todo.tag_id GROUP BY tag.id")
     fun getAllTags(): Flow<List<TagWithTasksCount>>
+
+    @Query("DELETE FROM tag")
+    suspend fun clearTable()
 }
