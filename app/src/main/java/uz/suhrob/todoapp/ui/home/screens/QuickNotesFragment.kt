@@ -37,6 +37,13 @@ class QuickNotesFragment : BaseFragment<FragmentQuickNotesBinding>() {
             viewModel.updateCheckListItem(item)
         }
         viewModel.allCheckListAndNotes.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.quickNotesRecyclerview.visibility = View.GONE
+                binding.noItems.visibility = View.VISIBLE
+            } else {
+                binding.quickNotesRecyclerview.visibility = View.VISIBLE
+                binding.noItems.visibility = View.GONE
+            }
             notesAndCheckListsAdapter.submitList(it)
         }
     }

@@ -35,4 +35,40 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/quick_notes_appbar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/quick_notes_appbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/no_items"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_notes_and_checklists_message"
+            android:gravity="center"
+            android:fontFamily="@font/avenir_demi"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_quick_note"
+            android:fontFamily="@font/avenir_demi"
+            android:id="@+id/add_note_btn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_check_list"
+            android:fontFamily="@font/avenir_demi"
+            android:id="@+id/add_checklist_btn" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
