@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="32dp">
 
     <LinearLayout
@@ -11,18 +12,27 @@
         android:orientation="vertical"
         android:padding="8dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_demi"
+            android:text="@string/title"
+            android:textColor="#353535"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/tag_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/outlined_background"
             android:fontFamily="@font/avenir_medium"
-            android:hint="@string/title"
             android:maxLines="1"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:paddingHorizontal="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="20sp"
+            tools:text="Title" />
 
         <TextView
             android:layout_width="match_parent"
