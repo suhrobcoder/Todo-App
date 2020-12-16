@@ -3,6 +3,7 @@ package uz.suhrob.todoapp.ui.home.screens
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -12,6 +13,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -151,10 +153,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.sign_out_menu -> {
-                firebaseAuth.signOut()
-                viewModel.clearAllData().invokeOnCompletion {
-                    startNewActivity(AuthActivity::class.java)
-                }
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Sign out")
+                    .setMessage("Are you sure you want to sign out?")
+                    .setPositiveButton("Sign out"
+                    ) { _, _ ->
+                        firebaseAuth.signOut()
+                        viewModel.clearAllData().invokeOnCompletion {
+                            startNewActivity(AuthActivity::class.java)
+                        }
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    .show()
             }
         }
         return super.onOptionsItemSelected(item)
