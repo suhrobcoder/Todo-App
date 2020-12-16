@@ -45,4 +45,5 @@
     <string name="now">Now</string>
     <string name="tag">Tag</string>
     <string name="complete_task">Complete Task</string>
+    <string name="no_task_message">No tasks here \n Tap the button to add new task</string>
 </resources>

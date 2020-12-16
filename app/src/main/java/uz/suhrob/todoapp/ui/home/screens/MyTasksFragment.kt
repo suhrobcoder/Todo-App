@@ -3,6 +3,7 @@ package uz.suhrob.todoapp.ui.home.screens
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import uz.suhrob.todoapp.R
@@ -54,7 +55,19 @@ class MyTasksFragment : BaseFragment<FragmentMyTasksBinding>() {
                 )
             }
         }
+        binding.addTaskBtn.setOnClickListener {
+            findNavController().navigate(R.id.addTaskFragment)
+        }
         viewModel.allTodos.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.calendarView.visibility = View.GONE
+                binding.todoRecycler.visibility = View.GONE
+                binding.noTasks.visibility = View.VISIBLE
+            } else {
+                binding.calendarView.visibility = View.VISIBLE
+                binding.todoRecycler.visibility = View.VISIBLE
+                binding.noTasks.visibility = View.GONE
+            }
             todoAdapter.submitList(it)
             binding.calendarView.setDecorateDays(todoAdapter.getDays())
         }
