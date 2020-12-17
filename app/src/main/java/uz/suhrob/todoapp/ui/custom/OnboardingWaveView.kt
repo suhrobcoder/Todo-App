@@ -25,7 +25,7 @@ class OnboardingWaveView @JvmOverloads constructor(
     private val path2 = Path()
     @ColorInt
     private var color: Int = Color.BLUE
-    private val colors = arrayOf("#F96160", "#6074F9", "#8561F9")
+    private val colors = arrayOf("#6074F9", "#3DD264", "#8561F9")
 
     init {
         paint1.apply {
