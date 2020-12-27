@@ -6,7 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.databinding.FragmentSigninBinding
@@ -51,16 +57,22 @@ class SignInFragment : BaseFragment<FragmentSigninBinding>() {
             if (!emailAndPasswordAreValid) {
                 return@setOnClickListener
             }
-            viewModel.signInWithEmailAndPassword(email, password).observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Loading -> binding.signinBtn.setLoading(true)
-                    is Resource.Error -> {
-                        binding.signinBtn.setLoading(false)
-                        toast(it.error)
-                    }
-                    is Resource.Success -> {
-                        toast("Sign in is successfully")
-                        startNewActivity(HomeActivity::class.java)
+            lifecycleScope.launchWhenStarted {
+                viewModel.signInWithEmailAndPassword(email, password).collect {
+                    when (it) {
+                        is Resource.Loading -> binding.signinBtn.setLoading(true)
+                        is Resource.Error -> {
+                            binding.signinBtn.setLoading(false)
+                            withContext(Dispatchers.Main) {
+                                toast(it.error)
+                            }
+                        }
+                        is Resource.Success -> {
+                            withContext(Dispatchers.Main) {
+                                toast("Sign in is successfully")
+                                startNewActivity(HomeActivity::class.java)
+                            }
+                        }
                     }
                 }
             }

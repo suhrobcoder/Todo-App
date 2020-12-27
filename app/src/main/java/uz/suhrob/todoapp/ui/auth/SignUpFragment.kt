@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.withContext
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.databinding.FragmentSignupBinding
@@ -58,20 +62,25 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>() {
             if (!credentialsAreValid) {
                 return@setOnClickListener
             }
-            viewModel.signUpWithEmailAndPassword(name, email, password)
-                .observe(viewLifecycleOwner) {
+            lifecycleScope.launchWhenStarted {
+                viewModel.signUpWithEmailAndPassword(name, email, password).collect {
                     when (it) {
                         is Resource.Loading -> binding.signupBtn.setLoading(true)
                         is Resource.Error -> {
                             binding.signupBtn.setLoading(false)
-                            toast(it.error)
+                            withContext(Dispatchers.Main) {
+                                toast(it.error)
+                            }
                         }
                         is Resource.Success -> {
-                            toast("Sign up is successfully")
-                            startNewActivity(HomeActivity::class.java)
+                            withContext(Dispatchers.Main) {
+                                toast("Sign up is successfully")
+                                startNewActivity(HomeActivity::class.java)
+                            }
                         }
                     }
                 }
+            }
         }
     }
 }

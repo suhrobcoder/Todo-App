@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.withContext
 import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.databinding.FragmentForgetPasswordBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
@@ -39,16 +43,22 @@ class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
                 binding.forgotEmail.error = "Enter a valid email"
                 return@setOnClickListener
             }
-            viewModel.sendPasswordResetRequest(email).observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Loading -> binding.forgotBtn.setLoading(true)
-                    is Resource.Error -> {
-                        binding.forgotBtn.setLoading(false)
-                        toast(it.error)
-                    }
-                    is Resource.Success -> {
-                        toast("Password reset instructions are sent")
-                        startNewActivity(HomeActivity::class.java)
+            lifecycleScope.launchWhenStarted {
+                viewModel.sendPasswordResetRequest(email).collect {
+                    when (it) {
+                        is Resource.Loading -> binding.forgotBtn.setLoading(true)
+                        is Resource.Error -> {
+                            binding.forgotBtn.setLoading(false)
+                            withContext(Dispatchers.Main) {
+                                toast(it.error)
+                            }
+                        }
+                        is Resource.Success -> {
+                            withContext(Dispatchers.Main) {
+                                toast("Password reset instructions are sent")
+                                startNewActivity(HomeActivity::class.java)
+                            }
+                        }
                     }
                 }
             }

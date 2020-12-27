@@ -3,9 +3,11 @@ package uz.suhrob.todoapp.ui.home.screens
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.model.FilterMode
 import uz.suhrob.todoapp.databinding.FragmentMyTasksBinding
@@ -58,18 +60,20 @@ class MyTasksFragment : BaseFragment<FragmentMyTasksBinding>() {
         binding.addTaskBtn.setOnClickListener {
             findNavController().navigate(R.id.addTaskFragment)
         }
-        viewModel.allTodos.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
-                binding.calendarView.visibility = View.GONE
-                binding.todoRecycler.visibility = View.GONE
-                binding.noTasks.visibility = View.VISIBLE
-            } else {
-                binding.calendarView.visibility = View.VISIBLE
-                binding.todoRecycler.visibility = View.VISIBLE
-                binding.noTasks.visibility = View.GONE
+        lifecycleScope.launchWhenStarted {
+            viewModel.allTodos.collect {
+                if (it.isEmpty()) {
+                    binding.calendarView.visibility = View.GONE
+                    binding.todoRecycler.visibility = View.GONE
+                    binding.noTasks.visibility = View.VISIBLE
+                } else {
+                    binding.calendarView.visibility = View.VISIBLE
+                    binding.todoRecycler.visibility = View.VISIBLE
+                    binding.noTasks.visibility = View.GONE
+                }
+                todoAdapter.submitList(it)
+                binding.calendarView.setDecorateDays(todoAdapter.getDays())
             }
-            todoAdapter.submitList(it)
-            binding.calendarView.setDecorateDays(todoAdapter.getDays())
         }
     }
 

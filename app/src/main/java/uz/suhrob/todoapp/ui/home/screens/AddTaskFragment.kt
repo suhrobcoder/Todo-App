@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.database.entity.Tag
 import uz.suhrob.todoapp.data.database.entity.Todo
@@ -74,15 +76,17 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
                     create().show()
                 }
         }
-        viewModel.allTags.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
-                viewModel.newTag(Tag("Personal", Color.RED))
-                return@observe
-            }
-            tags = it.map { tagWithTasksCount -> tagWithTasksCount.tag }.toTypedArray()
-            if (binding.taskTag.text.toString().isEmpty()) {
-                binding.taskTag.text = tags[0].title
-                selectedTag = tags[0].title
+        lifecycleScope.launchWhenStarted {
+            viewModel.allTags.collect {
+                if (it.isEmpty()) {
+                    viewModel.newTag(Tag("Personal", Color.RED))
+                    return@collect
+                }
+                tags = it.map { tagWithTasksCount -> tagWithTasksCount.tag }.toTypedArray()
+                if (binding.taskTag.text.toString().isEmpty()) {
+                    binding.taskTag.text = tags[0].title
+                    selectedTag = tags[0].title
+                }
             }
         }
     }

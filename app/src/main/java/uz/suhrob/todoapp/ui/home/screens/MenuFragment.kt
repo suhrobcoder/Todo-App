@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import uz.suhrob.todoapp.databinding.FragmentMenuBinding
 import uz.suhrob.todoapp.ui.base.BaseFragment
 import uz.suhrob.todoapp.ui.home.HomeViewModel
@@ -44,9 +46,10 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = tagAdapter
         }
-        viewModel.allTags.observe(viewLifecycleOwner) {
-            tagAdapter.submitList(it)
+        lifecycleScope.launchWhenStarted {
+            viewModel.allTags.collect {
+                tagAdapter.submitList(it)
+            }
         }
     }
-
 }
