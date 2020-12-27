@@ -1,11 +1,11 @@
 package uz.suhrob.todoapp.data.repository.auth
 
-import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import uz.suhrob.todoapp.data.FirestoreDataSource
@@ -21,9 +21,8 @@ class AuthRepositoryImpl(
     override fun signInWithEmailAndPassword(
         email: String,
         password: String
-    ): MutableLiveData<Resource<User>> {
-        val authLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
-        authLiveData.value = Resource.Loading
+    ): MutableStateFlow<Resource<User>> {
+        val authLiveData: MutableStateFlow<Resource<User>> = MutableStateFlow(Resource.Loading)
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -50,9 +49,8 @@ class AuthRepositoryImpl(
         name: String,
         email: String,
         password: String
-    ): MutableLiveData<Resource<User>> {
-        val authLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
-        authLiveData.value = Resource.Loading
+    ): MutableStateFlow<Resource<User>> {
+        val authLiveData: MutableStateFlow<Resource<User>> = MutableStateFlow(Resource.Loading)
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -74,9 +72,8 @@ class AuthRepositoryImpl(
         return authLiveData
     }
 
-    override fun sendPasswordResetRequest(email: String): MutableLiveData<Resource<String>> {
-        val authLiveData: MutableLiveData<Resource<String>> = MutableLiveData()
-        authLiveData.value = Resource.Loading
+    override fun sendPasswordResetRequest(email: String): MutableStateFlow<Resource<String>> {
+        val authLiveData: MutableStateFlow<Resource<String>> = MutableStateFlow(Resource.Loading)
         firebaseAuth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

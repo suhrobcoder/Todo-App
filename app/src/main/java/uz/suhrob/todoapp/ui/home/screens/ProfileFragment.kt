@@ -3,7 +3,6 @@ package uz.suhrob.todoapp.ui.home.screens
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.ContentValues
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -17,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -24,6 +24,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import uz.suhrob.todoapp.R
 import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.databinding.FragmentProfileBinding
@@ -58,54 +59,66 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         setHasOptionsMenu(true)
         binding.quickNotesToolbar.overflowIcon =
             ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
-        viewModel.userName.observe(viewLifecycleOwner) {
-            binding.userName.text = it
+        lifecycleScope.launchWhenStarted {
+            viewModel.userName.collect {
+                binding.userName.text = it
+            }
         }
-        viewModel.userEmail.observe(viewLifecycleOwner) {
-            binding.userEmail.text = it
+        lifecycleScope.launchWhenStarted {
+            viewModel.userEmail.collect {
+                binding.userEmail.text = it
+            }
         }
-        viewModel.userProfilePicture.observe(viewLifecycleOwner) {
-            glide.load(it).listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean = false
+        lifecycleScope.launchWhenStarted {
+            viewModel.userProfilePicture.collect {
+                glide.load(it).listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean = false
 
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    binding.uploadImageProgress.visibility = View.GONE
-                    isImageUploading = false
-                    binding.uploadRefresh.visibility = View.GONE
-                    return false
-                }
-            }).into(binding.profileImage)
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        binding.uploadImageProgress.visibility = View.GONE
+                        isImageUploading = false
+                        binding.uploadRefresh.visibility = View.GONE
+                        return false
+                    }
+                }).into(binding.profileImage)
+            }
         }
-        viewModel.createdTasksCount.observe(viewLifecycleOwner) {
-            binding.createTasks.text = it.toString()
+        lifecycleScope.launchWhenStarted {
+            viewModel.createdTasksCount.collect {
+                binding.createTasks.text = it.toString()
+            }
         }
-        viewModel.completedTasksCount.observe(viewLifecycleOwner) {
-            binding.completedTasks.text = it.toString()
+        lifecycleScope.launchWhenStarted {
+            viewModel.completedTasksCount.collect {
+                binding.completedTasks.text = it.toString()
+            }
         }
-        viewModel.uploadPictureState.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Success -> Unit
-                is Resource.Error -> {
-                    binding.uploadImageProgress.visibility = View.GONE
-                    toast(it.error)
-                    isImageUploading = false
-                    binding.uploadRefresh.visibility = View.VISIBLE
-                }
-                is Resource.Loading -> {
-                    binding.uploadImageProgress.visibility = View.VISIBLE
-                    isImageUploading = true
-                    binding.uploadRefresh.visibility = View.GONE
+        lifecycleScope.launchWhenStarted {
+            viewModel.uploadPictureState.collect {
+                when (it) {
+                    is Resource.Success -> Unit
+                    is Resource.Error -> {
+                        binding.uploadImageProgress.visibility = View.GONE
+                        toast(it.error)
+                        isImageUploading = false
+                        binding.uploadRefresh.visibility = View.VISIBLE
+                    }
+                    is Resource.Loading -> {
+                        binding.uploadImageProgress.visibility = View.VISIBLE
+                        isImageUploading = true
+                        binding.uploadRefresh.visibility = View.GONE
+                    }
                 }
             }
         }
@@ -175,18 +188,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private fun checkStoragePermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             requireContext(),
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun checkCameraPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             requireContext(),
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(
                     requireContext(),
-                    android.Manifest.permission.CAMERA
+                    Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED
     }
 

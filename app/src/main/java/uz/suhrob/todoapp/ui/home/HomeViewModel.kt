@@ -1,10 +1,10 @@
 package uz.suhrob.todoapp.ui.home
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import uz.suhrob.todoapp.data.Resource
 import uz.suhrob.todoapp.data.database.entity.*
@@ -25,8 +25,8 @@ class HomeViewModel @ViewModelInject constructor(
     private val checkListRepository: CheckListRepository,
     private val profileRepository: ProfileRepository
 ) : ViewModel() {
-    val allTags = tagRepository.getAllTags().asLiveData()
-    val allTodos = todoRepository.getAllTodos().asLiveData()
+    val allTags = tagRepository.getAllTags().asSharedFlow(viewModelScope)
+    val allTodos = todoRepository.getAllTodos().asSharedFlow(viewModelScope)
     val allCheckListAndNotes = noteRepository.getAllNotes()
         .combine(checkListRepository.getAllCheckLists()) { notes, checkListWithItems ->
             val list = ArrayList<TwoItemType<Note, CheckList>>()
@@ -56,15 +56,15 @@ class HomeViewModel @ViewModelInject constructor(
                 list.add(TwoItemType(checkList.id, second = checkList))
             }
             list.toList()
-        }.asLiveData()
-    val userName = profileRepository.getUserName().asLiveData()
-    val userEmail = profileRepository.getUserEmail().asLiveData()
-    val userProfilePicture = profileRepository.getProfilePicture().asLiveData()
-    val createdTasksCount = profileRepository.getCreatedTasksCount().asLiveData()
-    val completedTasksCount = profileRepository.getCompletedTasks().asLiveData()
+        }.asSharedFlow(viewModelScope)
+    val userName = profileRepository.getUserName().asSharedFlow(viewModelScope)
+    val userEmail = profileRepository.getUserEmail().asSharedFlow(viewModelScope)
+    val userProfilePicture = profileRepository.getProfilePicture().asSharedFlow(viewModelScope)
+    val createdTasksCount = profileRepository.getCreatedTasksCount().asSharedFlow(viewModelScope)
+    val completedTasksCount = profileRepository.getCompletedTasks().asSharedFlow(viewModelScope)
 
-    private var _uploadPictureState = MutableLiveData<Resource<String>>()
-    val uploadPictureState: LiveData<Resource<String>> get() = _uploadPictureState
+    private var _uploadPictureState = MutableSharedFlow<Resource<String>>()
+    val uploadPictureState: SharedFlow<Resource<String>> get() = _uploadPictureState
 
     private var latestProfilePicture: ByteArray? = null
 
@@ -103,13 +103,13 @@ class HomeViewModel @ViewModelInject constructor(
     fun uploadProfilePicture(arr: ByteArray) {
         latestProfilePicture = arr
         profileRepository.uploadPicture(arr).onEach {
-            _uploadPictureState.value = it
+            _uploadPictureState.emit(it)
         }.launchIn(viewModelScope)
     }
 
     fun retryUploadProfilePicture() {
         profileRepository.uploadPicture(latestProfilePicture!!).onEach {
-            _uploadPictureState.value = it
+            _uploadPictureState.emit(it)
         }.launchIn(viewModelScope)
     }
 
@@ -124,4 +124,8 @@ class HomeViewModel @ViewModelInject constructor(
         checkListRepository.clearTables()
         pref.saveUser(User())
     }
+}
+
+fun <T> Flow<T>.asSharedFlow(scope: CoroutineScope): SharedFlow<T> {
+    return shareIn(scope, SharingStarted.WhileSubscribed())
 }
