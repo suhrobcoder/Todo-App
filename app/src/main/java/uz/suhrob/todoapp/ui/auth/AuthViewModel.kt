@@ -1,10 +1,12 @@
 package uz.suhrob.todoapp.ui.auth
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import uz.suhrob.todoapp.data.repository.auth.AuthRepository
+import javax.inject.Inject
 
-class AuthViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
     fun signInWithEmailAndPassword(

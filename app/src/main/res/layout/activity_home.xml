@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
-            android:theme="@style/Widget.BottomNavigationView"
             app:itemIconTint="@color/bottomnav_selector"
             app:itemTextColor="@color/bottomnav_selector"
             app:menu="@menu/home_bottom_navigation_menu" />

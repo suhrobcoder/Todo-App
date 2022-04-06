@@ -1,8 +1,8 @@
 package uz.suhrob.todoapp.ui.home
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -16,8 +16,10 @@ import uz.suhrob.todoapp.data.repository.note.NoteRepository
 import uz.suhrob.todoapp.data.repository.profile.ProfileRepository
 import uz.suhrob.todoapp.data.repository.tag.TagRepository
 import uz.suhrob.todoapp.data.repository.todo.TodoRepository
+import javax.inject.Inject
 
-class HomeViewModel @ViewModelInject constructor(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val pref: TodoPreferences,
     private val tagRepository: TagRepository,
     private val todoRepository: TodoRepository,
